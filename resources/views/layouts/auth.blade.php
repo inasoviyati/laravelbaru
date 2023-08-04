@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png') }}" />
 
-    <title>Lab Inna</title>
+    <title>Lab SI & MI</title>
 
     <link href="{{ asset('css/light.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -27,10 +27,10 @@
                     <span class="align-middle">Lab SI & MI</span>
                 </a>
 
-                {{-- admin --}}
                 <ul class="sidebar-nav">
+                    {{-- admin --}}
                     <li class="sidebar-header">
-                        admin
+                        Admin
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('dashboard.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('dashboard.index')  }}">
@@ -63,22 +63,21 @@
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Ruang Kelas</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-blank.html">
+                    <li class="sidebar-item {{ request()->routeIs('report.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('report.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">BAP</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-blank.html">
+                    <li class="sidebar-item {{ request()->routeIs('score.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('score.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Nilai</span>
                         </a>
                     </li>
                     
-                    <li class="sidebar-header">
-                        instruktur
-                    </li>
-
                     {{-- instruktur --}}
+                    <li class="sidebar-header">
+                        Instruktur
+                    </li>
                     
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="icons-feather.html">
@@ -112,11 +111,11 @@
 
 
 
+                    {{-- mahasiswa --}}
+
                     <li class="sidebar-header">
-                        mahasiswa
+                        Mahasiswa
                     </li>
-                     
-                      {{-- mahasiswa --}}
 
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="charts-chartjs.html">

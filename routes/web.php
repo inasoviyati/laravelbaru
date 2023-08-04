@@ -3,7 +3,9 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstructorAttendanceController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\StudentAttendanceController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +29,6 @@ Route::resources([
     'instructor' => InstructorController::class,
     'instructorAttendance' => InstructorAttendanceController::class,
     'studentAttendance' => StudentAttendanceController::class,
+    'report' => ReportController::class,
+    'score' => ScoreController::class,
 ]);
