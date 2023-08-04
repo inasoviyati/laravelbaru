@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
-@section('title', 'Mahasiswa')
-@section('action', 'Tambah mahasiswa')
+@section('title', 'Kelas')
+@section('action', 'Tambah kelas')
 
 @section('content')
 
@@ -9,7 +9,7 @@
         @csrf
 
         <div class="form-group mb-3 col-md-6">
-            <label for="name">Name</label>
+            <label for="name">Nama</label>
             <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
             @error('name')
                 <div class="text-danger small">{{ $message }}</div>

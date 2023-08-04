@@ -9,7 +9,7 @@
         @method('PUT')
         
         <div class="form-group mb-3 col-md-6">
-            <label for="name">Name</label>
+            <label for="name">Nama</label>
             <input type="text" id="name" name="name" class="form-control" value="{{ $student->name }}">
         </div>
         

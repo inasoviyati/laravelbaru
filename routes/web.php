@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InstructorAttendanceController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\StudentAttendanceController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('student', StudentController::class);
-Route::resource('room', RoomController::class);
-Route::resource('instructor', InstructorController::class);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
-
-
-
+Route::resources([
+    'student' => StudentController::class,
+    'room' => RoomController::class,
+    'instructor' => InstructorController::class,
+    'instructorAttendance' => InstructorAttendanceController::class,
+    'studentAttendance' => StudentAttendanceController::class,
+]);

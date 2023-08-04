@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
-@section('title', 'Mahasiswa')
-@section('action', 'Daftar semua mahasiswa')
+@section('title', 'Kelas')
+@section('action', 'Daftar semua kelas')
 
 @section('content')
 @if (session('status'))

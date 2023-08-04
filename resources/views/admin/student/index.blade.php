@@ -15,7 +15,7 @@
     <table border="1" class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Nama</th>
                 <th>Email</th>
                 <th></th>
             </tr>

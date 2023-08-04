@@ -15,16 +15,16 @@
 
     <title>Lab Inna</title>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/light.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body data-theme="light">
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
                 <a class="sidebar-brand" href="index.html">
-                    <span class="align-middle">AdminKit</span>
+                    <span class="align-middle">Lab SI & MI</span>
                 </a>
 
                 {{-- admin --}}
@@ -32,33 +32,33 @@
                     <li class="sidebar-header">
                         admin
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="index.html">
+                    <li class="sidebar-item {{ request()->routeIs('dashboard.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('dashboard.index')  }}">
                             <i class="align-middle" data-feather="sliders"></i> <span
                                 class="align-middle">Dashboard</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('instructor.index') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->routeIs('instructor.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('instructor.index')  }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Data Instruktur</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('student.index') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ request()->routeIs('student.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('student.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Data Mahasiswa</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('instructor.index') }}">
+                    <li class="sidebar-item {{ request()->routeIs('instructorAttendance.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('instructorAttendance.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Absen Instruktur</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-blank.html">
+                    <li class="sidebar-item {{ request()->routeIs('studentAttendance.*') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('studentAttendance.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Absen Mahasiswa</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('room.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Ruang Kelas</span>
                         </a>
