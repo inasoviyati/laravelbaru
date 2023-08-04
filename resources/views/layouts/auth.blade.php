@@ -32,50 +32,48 @@
                     <li class="sidebar-header">
                         admin
                     </li>
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="index.html">
                             <i class="align-middle" data-feather="sliders"></i> <span
                                 class="align-middle">Dashboard</span>
                         </a>
                     </li>
-
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item {{ request()->routeIs('instructor.index') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('instructor.index')  }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Data Instruktur</span>
                         </a>
                     </li>
-
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item {{ request()->routeIs('student.index') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('student.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Data Mahasiswa</span>
                         </a>
                     </li>
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('instructor.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Absen Instruktur</span>
                         </a>
                     </li>
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="pages-blank.html">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Absen Mahasiswa</span>
                         </a>
                     </li>
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('room.index') }}">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Ruang Kelas</span>
                         </a>
                     </li>
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="pages-blank.html">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">BAP</span>
                         </a>
                     </li>
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="pages-blank.html">
                             <i class="align-middle" data-feather="book"></i> <span class="align-middle">Nilai</span>
                         </a>
                     </li>
+                    
                     <li class="sidebar-header">
                         instruktur
                     </li>
