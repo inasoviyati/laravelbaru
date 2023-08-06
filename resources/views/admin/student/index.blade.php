@@ -53,7 +53,16 @@
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
-                responsive: true
+                responsive: true,
+                columnDefs: [{
+                    targets: 4,
+                    orderable: false,
+                    searchable: false
+                }],
+                order: [
+                    [3, 'asc'],
+                    [1, 'asc']
+                ]
             });
         });
     </script>

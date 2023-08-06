@@ -56,6 +56,8 @@ class StudentController extends Controller
 
     public function show(User $student)
     {
+        abort_if($student->role != 'student', 401);
+
         return view('admin.student.show', [
             'title' => $this->title,
             'student' => $student,
@@ -65,6 +67,8 @@ class StudentController extends Controller
 
     public function edit(User $student)
     {
+        abort_if($student->role != 'student', 401);
+
         return view('admin.student.edit', [
             'title' => $this->title,
             'student' => $student,
@@ -74,6 +78,8 @@ class StudentController extends Controller
 
     public function update(Request $request, User $student)
     {
+        abort_if($student->role != 'student', 401);
+
         $this->validation($request, $student->npm);
 
         $student->update([

@@ -28,11 +28,14 @@
         <tbody>
             @foreach ($instructors as $instructor)
                 <tr>
-                    <td>{{ $instructor->npm }}</td>
+                    <td>{{ $instructor->npm ?? '-' }}</td>
                     <td>{{ $instructor->name }}</td>
                     <td>{{ $instructor->email }}</td>
-                    <td>{{ $instructor->roomUser->room->name }}</td>
+                    <td>{{ $instructor->roomUser->room->name ?? '-' }}</td>
                     <td class="text-end">
+                        @if($instructor->role == 'admin')
+                        <i>admin</i>
+                        @else
                         <form action="{{ route('instructor.destroy', ['instructor' => $instructor->id]) }}" method="POST">
                             @csrf
                             @method('delete')
@@ -42,6 +45,7 @@
                                 role="button">Ubah</a>
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -53,7 +57,16 @@
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
-                responsive: true
+                responsive: true,
+                columnDefs: [{
+                    targets: 4,
+                    orderable: false,
+                    searchable: false
+                }],
+                order: [
+                    [3, 'asc'],
+                    [1, 'asc']
+                ]
             });
         });
     </script>

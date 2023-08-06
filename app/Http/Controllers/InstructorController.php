@@ -14,7 +14,7 @@ class InstructorController extends Controller
     {
         return view('admin.instructor.index', [
             'title' => $this->title,
-            'instructors' => User::where('role', 'instructor')->get(),
+            'instructors' => User::where('role', '!=', 'student')->get(),
         ]);
     }
 
@@ -56,6 +56,8 @@ class InstructorController extends Controller
 
     public function show(User $instructor)
     {
+        abort_if($instructor->role != 'instructor', 401);
+
         return view('admin.instructor.show', [
             'title' => $this->title,
             'instructor' => $instructor,
@@ -65,6 +67,8 @@ class InstructorController extends Controller
 
     public function edit(User $instructor)
     {
+        abort_if($instructor->role != 'instructor', 401);
+
         return view('admin.instructor.edit', [
             'title' => $this->title,
             'instructor' => $instructor,
@@ -101,6 +105,8 @@ class InstructorController extends Controller
 
     public function destroy(User $instructor)
     {
+        abort_if($instructor->role != 'instructor', 401);
+
         $instructor->delete();
 
         return redirect()->back()
