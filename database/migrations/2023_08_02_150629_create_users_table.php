@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->unsignedBigInteger('id', 20);
             $table->string('name', 255);
-            $table->string('email', 255);
+            $table->string('email', 255)->unique();
             $table->string('npm', 8)->unique('npm');
             $table->timestamp('email_verified_at')->nullable()->default(null);
             $table->string('password', 255);
