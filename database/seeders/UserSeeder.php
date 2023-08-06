@@ -17,7 +17,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 500; $i++) {
+        $user = User::create([
+            'name' => 'Administrator',
+            'email' => 'admin@mailinator.com',
+            'email_verified_at' => now(),
+            'npm' => null,
+            'role' => 'admin',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => null,
+        ]);
+
+        for ($i = 1; $i <= 500; $i++) {
             do {
                 $npm = rand(1, 3) . '0' . rand(1, 9) . rand(19, 23) . rand('111', '999');
                 $npmCheck = User::where('npm', $npm)->count();
@@ -36,7 +46,7 @@ class UserSeeder extends Seeder
                 'email' => $email,
                 'email_verified_at' => now(),
                 'npm' => $npm,
-                'role' => 'student',
+                'role' => ($i <= 480) ? 'student' : 'instructor',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
                 'remember_token' => null,
             ]);
