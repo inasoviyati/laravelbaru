@@ -1,30 +1,37 @@
 @extends('layouts.auth')
 
-@section('title', 'Instruktur')
-@section('action', 'Daftar Instruktur')
+@push('title', $title)
+@push('header', 'Daftar ' . $title)
 
-@section('content')
-@if (session('status'))
-<div class="alert border border-{{ session('color') }} text-{{ session('color') }} mb-3 p-3 text-center">{{ session('status') }}</div>
-@endif
-    
-    <div class="mb-3 text-end">
+@push('action')
+    <div class="text-end">
         <a class="btn btn-success" href="{{ route('instructor.create') }}" role="button">Tambah</a>
     </div>
+@endpush
 
-    <table border="1" class="table">
+@section('content')
+    @if (session('status'))
+        <div class="alert border border-{{ session('color') }} text-{{ session('color') }} mb-3 p-3 text-center">
+            {{ session('status') }}</div>
+    @endif
+
+    <table id="dataTable" class="display nowrap" width="100%">
         <thead>
             <tr>
+                <th>NPM</th>
                 <th>Nama</th>
                 <th>Email</th>
-                <th></th>
+                <th>Kelas</th>
+                <th width="1%">Aksi</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($instructors as $instructor)
                 <tr>
+                    <td>{{ $instructor->npm }}</td>
                     <td>{{ $instructor->name }}</td>
                     <td>{{ $instructor->email }}</td>
+                    <td>{{ $instructor->roomUser->room->name }}</td>
                     <td class="text-end">
                         <form action="{{ route('instructor.destroy', ['instructor' => $instructor->id]) }}" method="POST">
                             @csrf
@@ -41,3 +48,13 @@
         </tbody>
     </table>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+@endpush

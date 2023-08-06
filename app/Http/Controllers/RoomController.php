@@ -38,7 +38,7 @@ class RoomController extends Controller
         return redirect()->route('room.index')
             ->with([
                 'color' => 'success',
-                'status' => 'Kelas berhasil dtambahkan',
+                'status' => "{$this->title} berhasil dtambahkan",
             ]);
     }
 
@@ -73,7 +73,7 @@ class RoomController extends Controller
         return redirect()->route('room.index')
             ->with([
                 'color' => 'success',
-                'status' => 'Kelas berhasil diperbarui',
+                'status' => "{$this->title} berhasil diperbarui",
             ]);
     }
 
@@ -84,7 +84,7 @@ class RoomController extends Controller
         return redirect()->back()
             ->with([
                 'color' => 'success',
-                'status' => 'Mahasiswa berhasil dihapus',
+                'status' => "{$this->title} berhasil dihapus",
             ]);
     }
 }

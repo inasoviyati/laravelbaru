@@ -50,7 +50,7 @@ class StudentController extends Controller
         return redirect()->route('student.index')
             ->with([
                 'color' => 'success',
-                'status' => 'Mahasiswa berhasil dtambahkan',
+                'status' => "{$this->title} berhasil dtambahkan",
             ]);
     }
 
@@ -82,6 +82,10 @@ class StudentController extends Controller
             'npm' => $request->npm,
         ]);
 
+        $student->roomUser()->update([
+            'room_id' => $request->room
+        ]);
+
         if ($request->password) {
             $student->update([
                 'password' => bcrypt($request->password)
@@ -91,7 +95,7 @@ class StudentController extends Controller
         return redirect()->route('student.index')
             ->with([
                 'color' => 'success',
-                'status' => 'Mahasiswa berhasil diperbarui',
+                'status' => "{$this->title} berhasil diperbarui",
             ]);
     }
 
@@ -102,7 +106,7 @@ class StudentController extends Controller
         return redirect()->back()
             ->with([
                 'color' => 'success',
-                'status' => 'Mahasiswa berhasil dihapus',
+                'status' => "{$this->title} berhasil dihapus",
             ]);
     }
 
