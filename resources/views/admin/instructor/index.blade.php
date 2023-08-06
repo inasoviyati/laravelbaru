@@ -30,7 +30,7 @@
                             @csrf
                             @method('delete')
                             <a class="btn btn-primary" href="{{ route('instructor.show', ['instructor' => $instructor->id]) }}"
-                                role="button">Tampil</a>
+                                role="button">Lihat</a>
                             <a class="btn btn-warning" href="{{ route('instructor.edit', ['instructor' => $instructor->id]) }}"
                                 role="button">Ubah</a>
                             <button class="btn btn-danger" type="submit">Hapus</button>

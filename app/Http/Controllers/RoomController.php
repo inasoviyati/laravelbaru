@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -15,7 +16,7 @@ class RoomController extends Controller
     public function index()
     {
         return view('admin.room.index', [
-            'rooms' => Room::get(),
+            'rooms' => Room::orderBy('name')->get(),
         ]);
     }
 
@@ -61,7 +62,13 @@ class RoomController extends Controller
     public function show(Room $room)
     {
         return view('admin.room.show', [
-            'room' => $room
+            'room' => $room,
+            'students' => User::where('role', '!=', 'admin')->where(function ($query) use ($room) {
+                $query->select('room_id')
+                    ->from('room_users')
+                    ->whereColumn('room_users.student_id', 'users.id')
+                    ->limit(1);
+            }, $room->id)->orderBy('name')->get()
         ]);
     }
 
@@ -92,10 +99,10 @@ class RoomController extends Controller
         ]);
 
         return redirect()->route('room.index')
-        ->with([
-            'color' => 'success', // success / danger
-            'status' => 'Kelas berhasil diperbarui',
-        ]);
+            ->with([
+                'color' => 'success', // success / danger
+                'status' => 'Kelas berhasil diperbarui',
+            ]);
     }
 
     /**
@@ -109,9 +116,9 @@ class RoomController extends Controller
         $room->delete();
 
         return redirect()->back()
-        ->with([
-            'color' => 'success', // success / danger
-            'status' => 'Mahasiswa berhasil dihapus',
-        ]);
+            ->with([
+                'color' => 'success', // success / danger
+                'status' => 'Mahasiswa berhasil dihapus',
+            ]);
     }
 }

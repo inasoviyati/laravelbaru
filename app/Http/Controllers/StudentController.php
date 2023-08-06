@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,18 +17,30 @@ class StudentController extends Controller
 
     public function create()
     {
-        return view('admin.student.create');
+        return view('admin.student.create', [
+            'rooms' => Room::orderBy('name')->get()
+        ]);
     }
 
     public function store(Request $request)
     {
         $this->validation($request);
 
-        User::create([
+        if (!$request->password || $request->password == null) {
+            $request->merge(['password' => bcrypt(rand(11111111, 99999999))]);
+        }
+
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt(rand(11111111,99999999)),
+            'npm' => $request->npm,
+            'password' => $request->password,
             'role' => 'student'
+        ]);
+
+        $user->roomUser()->create([
+            'student_id' => $user->id,
+            'room_id' => $request->room
         ]);
 
         return redirect()->route('student.index')
@@ -40,25 +53,34 @@ class StudentController extends Controller
     public function show(User $student)
     {
         return view('admin.student.show', [
-            'student' => $student
+            'student' => $student,
+            'rooms' => Room::orderBy('name')->get()
         ]);
     }
 
     public function edit(User $student)
     {
         return view('admin.student.edit', [
-            'student' => $student
+            'student' => $student,
+            'rooms' => Room::orderBy('name')->get()
         ]);
     }
 
     public function update(Request $request, User $student)
     {
-        $this->validation($request);
+        $this->validation($request, $student->npm);
 
-        User::find($student->id)->update([
+        $student->update([
             'name' => $request->name,
             'email' => $request->email,
+            'npm' => $request->npm,
         ]);
+
+        if ($request->password) {
+            $student->update([
+                'password' => bcrypt($request->password)
+            ]);
+        }
 
         return redirect()->route('student.index')
             ->with([
@@ -77,11 +99,17 @@ class StudentController extends Controller
                 'status' => 'Mahasiswa berhasil dihapus',
             ]);
     }
-    
-    public function validation($request){
-        return $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email',
+
+    public function validation($request, $npm = null)
+    {
+        $validated = $request->validate([
+            'npm' => 'required|digits:8|unique:users,npm,' . $npm . ',npm',
+            'name' => 'required|string|between:2,100',
+            'room' => 'required|exists:rooms,id',
+            'email' => 'required|email:rfc,dns',
+            'password' => 'sometimes|nullable|between:8,50',
         ]);
+
+        return $validated;
     }
 }

@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Ramsey\Uuid\Type\Integer;
 
-class Room extends Model
+class RoomUser extends Model
 {
     use HasFactory;
 
@@ -18,12 +16,12 @@ class Room extends Model
     public $timestamps = false;
 
     /**
-     * Get all of the roomUsers for the Room
+     * Get the room that owns the RoomUser
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function roomUsers(): HasMany
+    public function room(): BelongsTo
     {
-        return $this->hasMany(RoomUser::class);
+        return $this->belongsTo(Room::class);
     }
 }
