@@ -2,7 +2,7 @@
 <html lang="id">
 
 <head>
-    <title>Lab SI & MI</title>
+    <title>{{ config('app.name') }}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -82,7 +82,7 @@
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
                 <a class="sidebar-brand" href="index.html">
-                    <span class="align-middle">Lab SI & MI</span>
+                    <span class="align-middle">{{ config('app.name') }}</span>
                 </a>
 
                 <ul class="sidebar-nav">
@@ -98,31 +98,31 @@
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('instructor.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('instructor.index') }}">
-                            <i class="align-middle" data-feather="book"></i>
+                            <i class="align-middle" data-feather="database"></i>
                             <span class="align-middle">Data Instruktur</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('student.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('student.index') }}">
-                            <i class="align-middle" data-feather="book"></i>
+                            <i class="align-middle" data-feather="database"></i>
                             <span class="align-middle">Data Mahasiswa</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('room.index') }}">
-                            <i class="align-middle" data-feather="book"></i>
+                            <i class="align-middle" data-feather="users"></i>
                             <span class="align-middle">Ruang Kelas</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('instructorAttendance.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('instructorAttendance.index') }}">
-                            <i class="align-middle" data-feather="book"></i>
+                            <i class="align-middle" data-feather="clipboard"></i>
                             <span class="align-middle">Absen Instruktur</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('studentAttendance.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('studentAttendance.index') }}">
-                            <i class="align-middle" data-feather="book"></i>
+                            <i class="align-middle" data-feather="clipboard"></i>
                             <span class="align-middle">Absen Mahasiswa</span>
                         </a>
                     </li>
@@ -250,7 +250,7 @@
                     <div class="row text-muted">
                         <div class="col-6 text-start">
                             <p class="mb-0">
-                                <strong>Lab SI & MI</strong></a> &copy; <strong>{{ date('Y') }}</strong>
+                                <strong>{{ config('app.name') }}</strong></a> &copy; <strong>{{ date('Y') }}</strong>
                             </p>
                         </div>
                     </div>

@@ -59,6 +59,7 @@
                     orderable: false,
                     searchable: false
                 }],
+                pageLength: 50,
                 order: [
                     [3, 'asc'],
                     [1, 'asc']

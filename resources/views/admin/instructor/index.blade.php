@@ -34,7 +34,7 @@
                     <td>{{ $instructor->roomUser->room->name ?? '-' }}</td>
                     <td class="text-end">
                         @if($instructor->role == 'admin')
-                        <i>admin</i>
+                        -
                         @else
                         <form action="{{ route('instructor.destroy', ['instructor' => $instructor->id]) }}" method="POST">
                             @csrf
@@ -63,6 +63,7 @@
                     orderable: false,
                     searchable: false
                 }],
+                pageLength: 50,
                 order: [
                     [3, 'asc'],
                     [1, 'asc']

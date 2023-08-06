@@ -57,6 +57,7 @@
                     orderable: false,
                     searchable: false
                 }],
+                pageLength: 50,
                 order: [1, 'asc']
             });
         });

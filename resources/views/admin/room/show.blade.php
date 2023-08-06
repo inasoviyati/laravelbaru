@@ -36,7 +36,15 @@
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
-                responsive: true
+                responsive: true,
+                columnDefs: [{
+                    targets: 2,
+                    orderable: false,
+                    searchable: false
+                }],
+                pageLength: 50,
+                order: [1, 'asc']
+
             });
         });
     </script>
