@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
-@section('title', 'Mahasiswa')
-@section('action', 'Rincian mahasiswa')
+@push('title', $title)
+@push('header', 'Ubah ' . $title)
 
 @section('content')
     <form method="post" action="{{ route('student.update', ['student' => $student->id]) }}" class="row" autocomplete="off">

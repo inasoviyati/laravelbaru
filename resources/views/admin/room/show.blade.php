@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
-@section('title', 'Kelas')
-@section('action', "Kelas {$room->name}")
+@push('title', $title)
+@push('header', 'Detil ' . $title)
 
 @section('content')
     <table id="dataTable" class="display nowrap" width="100%">

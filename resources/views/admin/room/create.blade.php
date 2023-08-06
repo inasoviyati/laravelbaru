@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
-@section('title', 'Kelas')
-@section('action', 'Tambah kelas')
+@push('title', $title)
+@push('header', 'Tambah ' . $title)
 
 @section('content')
 

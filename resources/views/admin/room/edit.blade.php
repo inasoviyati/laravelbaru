@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
-@section('title', 'Kelas')
-@section('action', 'Rincian kelas')
+@push('title', $title)
+@push('header', 'Ubah ' . $title)
 
 @section('content')
     <form method="post" action="{{ route('room.update', ['room' => $room->id]) }}" class="row" autocomplete="off">

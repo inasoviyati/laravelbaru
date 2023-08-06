@@ -1,17 +1,19 @@
 @extends('layouts.auth')
 
-@section('title', 'Mahasiswa')
-@section('action', 'Daftar Mahasiswa')
+@push('title', $title)
+@push('header', 'Daftar ' . $title)
+
+@push('action')
+    <div class="text-end">
+        <a class="btn btn-success" href="{{ route('student.create') }}" role="button">Tambah</a>
+    </div>
+@endpush
 
 @section('content')
     @if (session('status'))
         <div class="alert border border-{{ session('color') }} text-{{ session('color') }} mb-3 p-3 text-center">
             {{ session('status') }}</div>
     @endif
-
-    <div class="mb-3 text-end">
-        <a class="btn btn-success" href="{{ route('student.create') }}" role="button">Tambah</a>
-    </div>
 
     <table id="dataTable" class="display nowrap" width="100%">
         <thead>

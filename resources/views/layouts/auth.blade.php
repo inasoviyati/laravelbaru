@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
+    <title>Lab SI & MI</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-    <meta name="author" content="AdminKit">
-    <meta name="keywords"
-        content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">    
     <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png') }}" />
-
-    <title>Lab SI & MI</title>
-
-    <link href="{{ asset('css/light.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('css/light.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}" />
@@ -91,7 +86,6 @@
                 </a>
 
                 <ul class="sidebar-nav">
-
                     <li class="sidebar-item {{ request()->routeIs('dashboard.*') ? 'active' : '' }}">
                         <a class="sidebar-link" href="{{ route('dashboard.index') }}">
                             <i class="align-middle" data-feather="sliders"></i> <span
@@ -99,7 +93,6 @@
                         </a>
                     </li>
 
-                    {{-- admin --}}
                     <li class="sidebar-header">
                         Admin
                     </li>
@@ -146,25 +139,21 @@
                         </a>
                     </li>
 
-                    {{-- instruktur --}}
                     <li class="sidebar-header">
                         Instruktur
                     </li>
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="icons-feather.html">
                             <i class="align-middle" data-feather="coffee"></i>
                             <span class="align-middle">Nilai</span>
                         </a>
                     </li>
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="icons-feather.html">
                             <i class="align-middle" data-feather="coffee"></i>
                             <span class="align-middle">BAP</span>
                         </a>
                     </li>
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="icons-feather.html">
                             <i class="align-middle" data-feather="coffee"></i>
@@ -172,7 +161,6 @@
                                 Instruktur</span>
                         </a>
                     </li>
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="icons-feather.html">
                             <i class="align-middle" data-feather="coffee"></i>
@@ -180,7 +168,6 @@
                                 Mahasiswa</span>
                         </a>
                     </li>
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="icons-feather.html">
                             <i class="align-middle" data-feather="coffee"></i>
@@ -189,14 +176,9 @@
                         </a>
                     </li>
 
-
-
-                    {{-- mahasiswa --}}
-
                     <li class="sidebar-header">
                         Mahasiswa
                     </li>
-
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="charts-chartjs.html">
                             <i class="align-middle" data-feather="bar-chart-2"></i>
@@ -204,10 +186,8 @@
                                 Kelas</span>
                         </a>
                     </li>
+
                 </ul>
-
-
-
             </div>
         </nav>
 
@@ -216,16 +196,13 @@
                 <a class="sidebar-toggle js-sidebar-toggle">
                     <i class="hamburger align-self-center"></i>
                 </a>
-
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
-
                         <li class="nav-item dropdown">
                             <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
                                 data-bs-toggle="dropdown">
                                 <i class="align-middle" data-feather="settings"></i>
                             </a>
-
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                                 data-bs-toggle="dropdown">
                                 <img src="{{ asset('img/avatars/avatar.jpg') }}"
@@ -249,14 +226,15 @@
 
             <main class="content">
                 <div class="container-fluid p-0">
-
-                    <h1 class="h3 mb-3">@yield('title', 'Page')</h1>
-
+                    <h1 class="h3 mb-3">@stack('title')</h1>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">@yield('action', '')</h5>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="card-title my-auto">@stack('header', '')</div>
+                                        @stack('action')
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     @yield('content')
@@ -264,7 +242,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </main>
 
@@ -279,6 +256,7 @@
                     </div>
                 </div>
             </footer>
+
         </div>
     </div>
     <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
@@ -293,8 +271,7 @@
 
         if (req.length) {
             req.parent().find('label').append('<span class="text-danger ms-1">*</span>')
-            $('* div.form-group:last').after(
-                '<div class="mb-4 w-100 text-muted"><span class="text-danger ms-1">*</span>) Wajib diisi</div>')
+            $('* div.form-group:last').after('<div class="mb-4 w-100 text-muted"><span class="text-danger ms-1">*</span>) Wajib diisi</div>')
         }
 
         if (form) {

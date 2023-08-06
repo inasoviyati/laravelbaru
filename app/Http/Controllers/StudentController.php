@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    protected $title = 'Mahasiswa';
+
     public function index()
     {
         return view('admin.student.index', [
+            'title' => $this->title,
             'students' => User::where('role', 'student')->get(),
         ]);
     }
@@ -18,6 +21,7 @@ class StudentController extends Controller
     public function create()
     {
         return view('admin.student.create', [
+            'title' => $this->title,
             'rooms' => Room::orderBy('name')->get()
         ]);
     }
@@ -53,6 +57,7 @@ class StudentController extends Controller
     public function show(User $student)
     {
         return view('admin.student.show', [
+            'title' => $this->title,
             'student' => $student,
             'rooms' => Room::orderBy('name')->get()
         ]);
@@ -61,6 +66,7 @@ class StudentController extends Controller
     public function edit(User $student)
     {
         return view('admin.student.edit', [
+            'title' => $this->title,
             'student' => $student,
             'rooms' => Room::orderBy('name')->get()
         ]);
