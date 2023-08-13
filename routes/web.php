@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstructorAttendanceController;
@@ -42,5 +43,6 @@ Route::middleware('auth')->group(function () {
         'report' => ReportController::class,
         'score' => ScoreController::class,
         'shift' => ShiftController::class,
+        'assignment' => AssignmentController::class,
     ]);
 });
