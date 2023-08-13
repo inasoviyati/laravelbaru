@@ -3,63 +3,6 @@
 
 <head>
     @include('layouts.header')
-    <style>
-        table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control::before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control::before {
-            background-color: unset;
-        }
-
-        table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control::before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control::before {
-            content: "✚";
-        }
-
-        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td.dtr-control::before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th.dtr-control::before {
-            background-color: unset;
-        }
-
-        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td.dtr-control::before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th.dtr-control::before {
-            content: "⚊";
-        }
-
-        div.dataTables_wrapper div.dataTables_length select {
-            min-width: 68px;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
-            padding: unset;
-            margin-left: 0px;
-            border: unset;
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            border: unset
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
-        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
-        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-            cursor: default;
-            color: #666 !important;
-            border: none;
-            background: none;
-            box-shadow: none;
-        }
-
-        table.dataTable>thead>tr>th {
-            text-align: center
-        }
-
-        table.dataTable>tbody>tr>td:last-child {
-            text-align: right
-        }
-
-        label {
-            margin-bottom: 8px;
-        }
-    </style>
     @stack('css')
 </head>
 
@@ -129,19 +72,7 @@
     <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('js/responsive.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        const req = $('input[required], select[required]')
-        const form = $('form')
-
-        if (req.length) {
-            req.parent().find('label').append('<span class="text-danger ms-1">*</span>')
-            $('* div.form-group:last').after('<div class="mb-4 w-100 text-muted"><span class="text-danger ms-1">*</span>) Wajib diisi</div>')
-        }
-
-        if (form) {
-            form.attr('autocomplete', 'off')
-        }
-    </script>
+    <script src="{{ asset('js/project.js') }}"></script>
     @stack('js')
 </body>
 
