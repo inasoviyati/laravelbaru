@@ -16,6 +16,6 @@ trait HasDate
             'Minggu',
         ];
 
-        return $days[++$number];
+        return $days[--$number];
     }
 }
