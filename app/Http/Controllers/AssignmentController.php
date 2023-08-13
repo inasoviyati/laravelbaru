@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use App\Models\Shift;
 use App\Models\User;
+use App\Services\HasDate;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
 {
+    use HasDate;
+
     protected $title = 'Penugasan';
 
     public function index()
@@ -20,10 +23,12 @@ class AssignmentController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Shift $shift, $day)
     {
         return view('admin.assignment.create', [
             'title' => $this->title,
+            'shift' => $shift,
+            'day' => $this->numberToDayName($day),
         ]);
     }
 

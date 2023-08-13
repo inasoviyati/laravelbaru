@@ -11,6 +11,7 @@ use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\StudentAttendanceController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,5 +46,6 @@ Route::middleware('auth')->group(function () {
         'report' => ReportController::class,
         'score' => ScoreController::class,
         'shift' => ShiftController::class,
+        'subject' => SubjectController::class,
     ]);
 });

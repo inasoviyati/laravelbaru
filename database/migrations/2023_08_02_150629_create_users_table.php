@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable()->default(null);
             $table->string('password', 255);
             $table->string('remember_token', 100)->nullable()->default(null);
-            $table->enum('role', ['instructor', 'student', 'admin']);
+            $table->enum('role', ['instructor', 'admin'])->nullable();
             $table->boolean('is_active')->default(1);
             $table->timestamp('created_at')->nullable()->default(null);
             $table->timestamp('updated_at')->nullable()->default(null);

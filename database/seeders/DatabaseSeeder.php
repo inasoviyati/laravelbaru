@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
             UserSeeder::class,
             ShiftSeeder::class,
+            SubjectSeeder::class,
         ]);
     }
 }

@@ -4,9 +4,24 @@
 @push('header', 'Tambah ' . $title)
 
 @section('content')
-
-    <form method="post" action="{{ route('assignment.store') }}" class="row" autocomplete="off">
+    <form method="post" action="{{ route('assignment.store', ['shift' => $shift, 'day' => $day]) }}" class="row" autocomplete="off">
         @csrf
+
+        <div class="form-group mb-3 col-md-4">
+            <label for="day">Hari</label>
+            <input type="text" readonly class="form-control-plaintext fw-bold" id="day" value="{{ $day }}">
+        </div>
+
+        <div class="form-group mb-3 col-md-4">
+            <label for="shift">Shift</label>
+            <input type="text" readonly class="form-control-plaintext fw-bold" id="shift" value="{{ $shift->name }}">
+        </div>
+
+        <div class="form-group mb-3 col-md-4">
+            <label for="shift">Waktu</label>
+            <input type="text" readonly class="form-control-plaintext fw-bold" id="shift" value="{{ $shift->timeFormated('time_start') . ' - ' . $shift->timeFormated('time_end') }}">
+        </div>
+
 
         <div class="form-group mb-3 col-md-6">
             <label for="name">Nama</label>

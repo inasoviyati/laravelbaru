@@ -55,6 +55,12 @@
                         <span class="align-middle">Data Mahasiswa</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ request()->routeIs('subject.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('subject.index') }}">
+                        <i class="align-middle" data-feather="book"></i>
+                        <span class="align-middle">Data Mata Kuliah</span>
+                    </a>
+                </li>
                 <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('room.index') }}">
                         <i class="align-middle" data-feather="users"></i>
