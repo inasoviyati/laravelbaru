@@ -29,13 +29,13 @@
                 <tr>
                     <td>{{ $room->id }}</td>
                     <td>{{ $room->name }}</td>
-                    <td>{{ $room->roomUsers->count() }} orang</td>
+                    <td>
+                        <a href="{{ route('room.show', ['room' => $room->id]) }}">{{ $room->roomUsers->count() }} orang</a>
+                    </td>
                     <td class="text-end">
                         <form action="{{ route('room.destroy', ['room' => $room->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <a class="btn btn-primary" href="{{ route('room.show', ['room' => $room->id]) }}"
-                                role="button">Lihat</a>
                             <a class="btn btn-warning" href="{{ route('room.edit', ['room' => $room->id]) }}"
                                 role="button">Ubah</a>
                             <button class="btn btn-danger" type="submit">Hapus</button>

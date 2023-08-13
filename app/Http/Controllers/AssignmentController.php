@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\Shift;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class AssignmentController extends Controller
         return view('admin.assignment.index', [
             'title' => $this->title,
             'assignments' => Assignment::get(),
+            'shifts' => Shift::orderBy('time_start')->get(),
         ]);
     }
 

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->time('time_start');
             $table->time('time_end');
-            $table->integer('day');
         });
 
         Schema::enableForeignKeyConstraints();

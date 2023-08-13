@@ -19,11 +19,10 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>No</th>
-                <th>Mulai</th>
                 <th>Nama</th>
-                <th>Hari</th>
-                <th>Waktu</th>
+                <th>Mulai</th>
+                <th>Selesai</th>
+                <th>Durasi</th>
                 <th width="1%">Aksi</th>
             </tr>
         </thead>
@@ -31,19 +30,14 @@
             @foreach ($shifts as $shift)
                 <tr>
                     <td>{{ $shift->id }}</td>
-                    <td>{{ $shift->day }}</td>
-                    <td>{{ $shift->time_start }}</td>
                     <td>{{ $shift->name }}</td>
-                    <td>{{ $shift->dayLocale }}</td>
-                    <td class="text-end">
-                        <div class="small text-muted">{{ $shift->diffTime }}</div>
-                        {{ date('H:i', strtotime($shift->time_start)) }} - {{ date('H:i', strtotime($shift->time_end)) }}
-                    </td>
+                    <td>{{ $shift->timeFormated('time_start') }}</td>
+                    <td>{{ $shift->timeFormated('time_end') }}</td>
+                    <td>{{ $shift->diffTime }}</td>
                     <td class="text-end">
                         <form action="{{ route('shift.destroy', ['shift' => $shift->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <a class="btn btn-primary" href="{{ route('shift.show', ['shift' => $shift->id]) }}" role="button">Lihat</a>
                             <a class="btn btn-warning" href="{{ route('shift.edit', ['shift' => $shift->id]) }}" role="button">Ubah</a>
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </form>
@@ -60,21 +54,12 @@
             $('#dataTable').DataTable({
                 responsive: true,
                 columnDefs: [{
-                        targets: 6,
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        target: [1, 2],
-                        visible: false,
-                        searchable: false
-                    }
-                ],
-                pageLength: 50,
-                order: [
-                    [1, 'asc'],
-                    [2, 'asc']
-                ]
+                    targets: 5,
+                    orderable: false,
+                    searchable: false
+                }],
+                pageLength: 10,
+                order: [1, 'asc']
             });
         });
     </script>

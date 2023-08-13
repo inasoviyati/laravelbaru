@@ -28,11 +28,9 @@ class ShiftController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:shifts,name',
-            'day' => 'required|digits_between:1,7',
             'time_start' => 'required|date_format:H:i',
             'time_end' => 'required|date_format:H:i|after:time_start',
         ], [
-            'day.digits_between' => 'harus berisi Senin - Minggu.',
             'time_end.after' => 'harus berisi jam setelah mulai.',
             'time_start.date_format' => 'tidak cocok dengan format hh:mm.',
             'time_end.date_format' => 'tidak cocok dengan format hh:mm.',
@@ -40,7 +38,6 @@ class ShiftController extends Controller
 
         Shift::create([
             'name' => $request->name,
-            'day' => $request->day,
             'time_start' => $request->time_start,
             'time_end' => $request->time_end,
         ]);
@@ -52,12 +49,9 @@ class ShiftController extends Controller
             ]);
     }
 
-    public function show(Shift $shift)
+    public function show($day)
     {
-        return view('admin.shift.show', [
-            'title' => $this->title,
-            'shift' => $shift,
-        ]);
+        return abort(404);
     }
 
     public function edit(Shift $shift)
@@ -72,7 +66,6 @@ class ShiftController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:shifts,name,' . $shift->id,
-            'day' => 'required|digits_between:1,7',
             'time_start' => 'required|date_format:H:i',
             'time_end' => 'required|date_format:H:i|after:time_start',
         ], [
@@ -84,7 +77,6 @@ class ShiftController extends Controller
 
         Shift::find($shift->id)->update([
             'name' => $request->name,
-            'day' => $request->day,
             'time_start' => $request->time_start,
             'time_end' => $request->time_end,
         ]);

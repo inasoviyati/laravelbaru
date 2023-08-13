@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects')->cascadeOnDelete();
             $table->unsignedBigInteger('shift_id');
             $table->foreign('shift_id')->references('id')->on('shifts')->cascadeOnDelete();
+            $table->tinyInteger('day');
         });
 
         Schema::enableForeignKeyConstraints();

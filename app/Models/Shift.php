@@ -12,21 +12,19 @@ class Shift extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['dayLocale', 'diffTime'];
+    protected $appends = ['diffTime'];
 
     public $timestamps = false;
+
+    public function timeFormated($time)
+    {
+        return date('H:i', strtotime($this->$time));
+    }
 
     public function getDiffTimeAttribute()
     {
         $time_start = Carbon::parse($this->attributes['time_start']);
         $time_end = Carbon::parse($this->attributes['time_end']);
         return $time_start->diff($time_end)->format('%h Jam %i Menit');
-    }
-
-    public function getDayLocaleAttribute()
-    {
-        $day = $this->attributes['day'] - 1;
-        $alias = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
-        return $alias[$day];
     }
 }

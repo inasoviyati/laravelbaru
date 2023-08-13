@@ -55,6 +55,12 @@
                         <span class="align-middle">Data Mahasiswa</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('room.index') }}">
+                        <i class="align-middle" data-feather="users"></i>
+                        <span class="align-middle">Ruang Kelas</span>
+                    </a>
+                </li>
                 <li class="sidebar-item {{ request()->routeIs('shift.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('shift.index') }}">
                         <i class="align-middle" data-feather="clock"></i>
@@ -65,12 +71,6 @@
                     <a class="sidebar-link" href="{{ route('assignment.index') }}">
                         <i class="align-middle" data-feather="briefcase"></i>
                         <span class="align-middle">Penugasan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
-                    <a class="sidebar-link" href="{{ route('room.index') }}">
-                        <i class="align-middle" data-feather="users"></i>
-                        <span class="align-middle">Ruang Kelas</span>
                     </a>
                 </li>
             @endif
@@ -105,7 +105,8 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="clipboard"></i>
+                        <i class="align-middle" data-feather="cli
+                        board"></i>
                         <span class="align-middle">Absen Mahasiswa</span>
                     </a>
                 </li>
