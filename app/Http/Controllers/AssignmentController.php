@@ -89,4 +89,9 @@ class AssignmentController extends Controller
                 'status' => "{$this->title} berhasil dihapus",
             ]);
     }
+
+    public function createWithDay(Shift $shift, $day)
+    {
+        return $day;
+    }
 }

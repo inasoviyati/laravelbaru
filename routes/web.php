@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::redirect('/', 'dashboard')->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('assignment', [AssignmentController::class, 'index'])->name('assignment.index');
+    Route::resource('shift/{shift}/day/{day}/assignment', AssignmentController::class, ['names' => 'assignment'])->except('index')->where(['day' => '[1-7]']);
     Route::resources([
         'student' => StudentController::class,
         'room' => RoomController::class,
@@ -43,6 +45,5 @@ Route::middleware('auth')->group(function () {
         'report' => ReportController::class,
         'score' => ScoreController::class,
         'shift' => ShiftController::class,
-        'assignment' => AssignmentController::class,
     ]);
 });
