@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('meets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('assignment_id');
-            $table->unsignedBigInteger('shift_id');
-            $table->foreign('shift_id')->references('id')->on('shifts')->cascadeOnDelete();
+            $table->foreign('assignment_id')->references('id')->on('assignments')->cascadeOnDelete();
             $table->date('date');
         });
 

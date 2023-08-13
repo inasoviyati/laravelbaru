@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
     protected $title = 'Mahasiswa';
+    protected User $student;
+
+    public function __construct()
+    {
+        $userId = request()->route()->student;
+        if (!$userId) return;
+        $userable = User::findOrFail($userId);
+        abort_if($userable->role != 'student', 401);
+        $this->student = $userable;
+    }
 
     public function index()
     {
@@ -54,13 +64,13 @@ class StudentController extends Controller
             ]);
     }
 
-    public function show(User $student)
+    public function show()
     {
-        abort_if($student->role != 'student', 401);
 
         return view('admin.student.show', [
+
             'title' => $this->title,
-            'student' => $student,
+            'student' => $this->student,
             'rooms' => Room::orderBy('name')->get()
         ]);
     }

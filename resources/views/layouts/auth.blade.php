@@ -2,21 +2,7 @@
 <html lang="id">
 
 <head>
-    <title>{{ config('app.name') }}</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="">    
-    <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png') }}" />
-    <link rel="stylesheet" href="{{ asset('css/light.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap5.min.css') }}" />
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+    @include('layouts.header')
     <style>
         table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control::before,
         table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control::before {
@@ -70,7 +56,7 @@
             text-align: right
         }
 
-        label{
+        label {
             margin-bottom: 8px;
         }
     </style>
@@ -79,117 +65,8 @@
 
 <body data-theme="light">
     <div class="wrapper">
-        <nav id="sidebar" class="sidebar js-sidebar">
-            <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="index.html">
-                    <span class="align-middle">{{ config('app.name') }}</span>
-                </a>
 
-                <ul class="sidebar-nav">
-                    <li class="sidebar-item {{ request()->routeIs('dashboard.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('dashboard.index') }}">
-                            <i class="align-middle" data-feather="sliders"></i> <span
-                                class="align-middle">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-header">
-                        Admin
-                    </li>
-                    <li class="sidebar-item {{ request()->routeIs('instructor.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('instructor.index') }}">
-                            <i class="align-middle" data-feather="database"></i>
-                            <span class="align-middle">Data Instruktur</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {{ request()->routeIs('student.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('student.index') }}">
-                            <i class="align-middle" data-feather="database"></i>
-                            <span class="align-middle">Data Mahasiswa</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('room.index') }}">
-                            <i class="align-middle" data-feather="users"></i>
-                            <span class="align-middle">Ruang Kelas</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {{ request()->routeIs('instructorAttendance.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('instructorAttendance.index') }}">
-                            <i class="align-middle" data-feather="clipboard"></i>
-                            <span class="align-middle">Absen Instruktur</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {{ request()->routeIs('studentAttendance.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('studentAttendance.index') }}">
-                            <i class="align-middle" data-feather="clipboard"></i>
-                            <span class="align-middle">Absen Mahasiswa</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {{ request()->routeIs('report.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('report.index') }}">
-                            <i class="align-middle" data-feather="book"></i>
-                            <span class="align-middle">BAP</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item {{ request()->routeIs('score.*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('score.index') }}">
-                            <i class="align-middle" data-feather="book"></i>
-                            <span class="align-middle">Nilai</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-header">
-                        Instruktur
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="icons-feather.html">
-                            <i class="align-middle" data-feather="coffee"></i>
-                            <span class="align-middle">Nilai</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="icons-feather.html">
-                            <i class="align-middle" data-feather="coffee"></i>
-                            <span class="align-middle">BAP</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="icons-feather.html">
-                            <i class="align-middle" data-feather="coffee"></i>
-                            <span class="align-middle">Absen
-                                Instruktur</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="icons-feather.html">
-                            <i class="align-middle" data-feather="coffee"></i>
-                            <span class="align-middle">Absen
-                                Mahasiswa</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="icons-feather.html">
-                            <i class="align-middle" data-feather="coffee"></i>
-                            <span class="align-middle">Ruang
-                                Tugas</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-header">
-                        Mahasiswa
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="charts-chartjs.html">
-                            <i class="align-middle" data-feather="bar-chart-2"></i>
-                            <span class="align-middle">Ruang
-                                Kelas</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
+        @include('layouts.sidebar')
 
         <div class="main">
             <nav class="navbar navbar-expand navbar-light navbar-bg">
@@ -199,25 +76,22 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav navbar-align">
                         <li class="nav-item dropdown">
-                            <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
-                                data-bs-toggle="dropdown">
+                            <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                                 <i class="align-middle" data-feather="settings"></i>
                             </a>
-                            <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
-                                data-bs-toggle="dropdown">
-                                <img src="{{ asset('img/avatars/avatar.jpg') }}"
-                                    class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span
-                                    class="text-dark">Charles Hall</span>
+                            <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                                <img src="https://dummyimage.com/64x64/3b7cdd/fff&text={{ mb_substr(auth()->user()->name, 0, 1) }}" class="avatar img-fluid rounded me-1" alt="avatar" />
+                                <span class="text-dark">{{ Str::words(auth()->user()->name, 2, '...') }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="pages-profile.html">
                                     <i class="align-middle me-1" data-feather="user"></i> Profil
                                 </a>
                                 <a class="dropdown-item" href="index.html">
-                                    <i class="align-middle me-1" data-feather="settings"></i> Settings
+                                    <i class="align-middle me-1" data-feather="settings"></i> Pengaturan
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Log out</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}">Keluar</a>
                             </div>
                         </li>
                     </ul>
@@ -245,17 +119,7 @@
                 </div>
             </main>
 
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-muted">
-                        <div class="col-6 text-start">
-                            <p class="mb-0">
-                                <strong>{{ config('app.name') }}</strong></a> &copy; <strong>{{ date('Y') }}</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            @include('layouts.footer')
 
         </div>
     </div>

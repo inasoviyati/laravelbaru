@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'name' => 'Administrator',
-            'email' => 'admin@mailinator.com',
+            'email' => 'labsimi@yopmail.com',
             'email_verified_at' => now(),
             'npm' => null,
             'role' => 'admin',
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             $name = $faker->name;
 
             do {
-                $email = Str::slug(Str::words($name, 2, ''), '_') . rand(1, 99) . '@mailinator.com';
+                $email = Str::slug(Str::words($name, 2, ''), '_') . rand(1, 99) . '@yopmail.com';
                 $emailCheck = User::where('email', $email)->count();
             } while ($emailCheck > 0);
 
