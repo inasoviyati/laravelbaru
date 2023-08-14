@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
     protected $title = 'Mahasiswa';
+
     protected User $student;
 
     public function __construct()
@@ -16,7 +17,7 @@ class StudentController extends Controller
         $userId = request()->route()->student;
         if (!$userId) return;
         $userable = User::findOrFail($userId);
-        abort_if($userable->role != 'student', 401);
+        abort_if($userable->role != null, 401);
         $this->student = $userable;
     }
 
@@ -24,7 +25,7 @@ class StudentController extends Controller
     {
         return view('admin.student.index', [
             'title' => $this->title,
-            'students' => User::where('role', 'student')->get(),
+            'students' => User::whereNull('role')->get(),
         ]);
     }
 
@@ -49,7 +50,7 @@ class StudentController extends Controller
             'email' => $request->email,
             'npm' => $request->npm,
             'password' => $request->password,
-            'role' => 'student'
+            'role' => null
         ]);
 
         $user->roomUser()->create([
@@ -77,8 +78,6 @@ class StudentController extends Controller
 
     public function edit(User $student)
     {
-        abort_if($student->role != 'student', 401);
-
         return view('admin.student.edit', [
             'title' => $this->title,
             'student' => $student,
@@ -88,8 +87,6 @@ class StudentController extends Controller
 
     public function update(Request $request, User $student)
     {
-        abort_if($student->role != 'student', 401);
-
         $this->validation($request, $student->npm);
 
         $student->update([

@@ -10,4 +10,5 @@ if (form) {
     form.attr('autocomplete', 'off')
 }
 
+$('#dataTable>thead>tr>th:contains("ID"), #dataTable>thead>tr>th:contains("NPM")').attr('width', "1%")
 $('button[class*="btn-danger"]:submit:contains("Hapus")').attr('onclick', "return confirm('Yakin akan menghapus data ini?')")
