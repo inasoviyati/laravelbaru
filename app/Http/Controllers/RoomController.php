@@ -38,7 +38,7 @@ class RoomController extends Controller
         return redirect()->route('room.index')
             ->with([
                 'color' => 'success',
-                'status' => "{$this->title} berhasil dtambahkan",
+                'status' => "{$this->title} berhasil ditambahkan",
             ]);
     }
 

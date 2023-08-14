@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\Shift;
+use App\Models\Subject;
 use App\Models\User;
 use App\Services\HasDate;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class AssignmentController extends Controller
     {
         return view('admin.assignment.index', [
             'title' => $this->title,
-            'assignments' => Assignment::get(),
+            'assignments' => Assignment::with('subject')->get(),
             'shifts' => Shift::orderBy('time_start')->get(),
         ]);
     }
@@ -28,24 +29,38 @@ class AssignmentController extends Controller
         return view('admin.assignment.create', [
             'title' => $this->title,
             'shift' => $shift,
-            'day' => $this->numberToDayName($day),
+            'day' => $day,
+            'dayName' => $this->numberToDayName($day),
+            'subjects' => Subject::orderBy('name')->get(),
+            'instructors' => User::where('role', 'instructor')->orderBy('name')->get(),
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Shift $shift, $day)
     {
+        $request->merge([
+            'shift' => $shift->id,
+            'day' => $day,
+        ]);
+
         $request->validate([
-            'name' => 'required|string',
+            'instructor' => 'required|exists:users,id',
+            'subject' => 'required|exists:subjects,id',
+            'shift' => 'required|exists:shifts,id',
+            'day' => 'required|digits_between:1,7',
         ]);
 
         Assignment::create([
-            'name' => $request->name,
+            'instructor_id' => $request->instructor,
+            'subject_id' => $request->subject,
+            'shift_id' => $shift->id,
+            'day' => $day,
         ]);
 
         return redirect()->route('assignment.index')
             ->with([
                 'color' => 'success',
-                'status' => "{$this->title} berhasil dtambahkan",
+                'status' => "{$this->title} berhasil ditambahkan",
             ]);
     }
 

@@ -50,7 +50,7 @@ class InstructorController extends Controller
         return redirect()->route('instructor.index')
             ->with([
                 'color' => 'success',
-                'status' => "{$this->title} berhasil dtambahkan",
+                'status' => "{$this->title} berhasil ditambahkan",
             ]);
     }
 

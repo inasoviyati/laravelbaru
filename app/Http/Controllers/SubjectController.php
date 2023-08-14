@@ -38,7 +38,7 @@ class SubjectController extends Controller
         return redirect()->route('subject.index')
             ->with([
                 'color' => 'success',
-                'status' => "{$this->title} berhasil dtambahkan",
+                'status' => "{$this->title} berhasil ditambahkan",
             ]);
     }
 

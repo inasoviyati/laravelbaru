@@ -45,7 +45,7 @@ class ShiftController extends Controller
         return redirect()->route('shift.index')
             ->with([
                 'color' => 'success',
-                'status' => "{$this->title} berhasil dtambahkan",
+                'status' => "{$this->title} berhasil ditambahkan",
             ]);
     }
 

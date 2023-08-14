@@ -60,7 +60,7 @@ class StudentController extends Controller
         return redirect()->route('student.index')
             ->with([
                 'color' => 'success',
-                'status' => "{$this->title} berhasil dtambahkan",
+                'status' => "{$this->title} berhasil ditambahkan",
             ]);
     }
 
