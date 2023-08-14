@@ -55,6 +55,15 @@
             <div class="small text-muted mt-1">kosongkan untuk tidak mengubah password</div>
         </div>
 
+        <div class="form-group mb-3 col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="instructor" name="is_instructor" {{ $student->role == 'instructor' ? 'checked' : '' }}>
+                <label class="form-check-label" for="instructor">
+                    Atur sebagai Instruktur
+                </label>
+            </div>
+        </div>
+
         <div class="d-flex justify-content-between">
             <a href="{{ route('student.index') }}" class="btn btn-light">Kembali</a>
             <button type="submit" class="btn btn-success">Update</button>

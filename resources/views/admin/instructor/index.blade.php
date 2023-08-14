@@ -39,10 +39,10 @@
                         <form action="{{ route('instructor.destroy', ['instructor' => $instructor->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <a class="btn btn-primary" href="{{ route('instructor.show', ['instructor' => $instructor->id]) }}"
+                            {{-- <a class="btn btn-primary" href="{{ route('instructor.show', ['instructor' => $instructor->id]) }}"
                                 role="button">Lihat</a>
                             <a class="btn btn-warning" href="{{ route('instructor.edit', ['instructor' => $instructor->id]) }}"
-                                role="button">Ubah</a>
+                                role="button">Ubah</a> --}}
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </form>
                         @endif

@@ -17,7 +17,7 @@ class StudentController extends Controller
         $userId = request()->route()->student;
         if (!$userId) return;
         $userable = User::findOrFail($userId);
-        abort_if($userable->role != null, 401);
+        abort_if($userable->role == 'admin', 401);
         $this->student = $userable;
     }
 
@@ -25,7 +25,7 @@ class StudentController extends Controller
     {
         return view('admin.student.index', [
             'title' => $this->title,
-            'students' => User::whereNull('role')->get(),
+            'students' => User::where('role', '!=', 'admin')->orWhere('role', null)->get(),
         ]);
     }
 
@@ -94,6 +94,14 @@ class StudentController extends Controller
             'email' => $request->email,
             'npm' => $request->npm,
         ]);
+
+        $isInstructor = $request->is_instructor;
+
+        if ($isInstructor) {
+            $student->update(['role' => 'instructor']);
+        } else {
+            $student->update(['role' => null]);
+        }
 
         $student->roomUser()->update([
             'room_id' => $request->room

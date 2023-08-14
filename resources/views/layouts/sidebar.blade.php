@@ -43,16 +43,16 @@
                 <li class="sidebar-header">
                     Data Utama
                 </li>
-                <li class="sidebar-item {{ request()->routeIs('instructor.*') ? 'active' : '' }}">
-                    <a class="sidebar-link" href="{{ route('instructor.index') }}">
-                        <i class="align-middle" data-feather="database"></i>
-                        <span class="align-middle">Data Instruktur</span>
-                    </a>
-                </li>
                 <li class="sidebar-item {{ request()->routeIs('student.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('student.index') }}">
                         <i class="align-middle" data-feather="database"></i>
                         <span class="align-middle">Data Mahasiswa</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ request()->routeIs('instructor.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('instructor.index') }}">
+                        <i class="align-middle" data-feather="database"></i>
+                        <span class="align-middle">Data Instruktur</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('subject.*') ? 'active' : '' }}">
@@ -70,7 +70,7 @@
                 <li class="sidebar-item {{ request()->routeIs('shift.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('shift.index') }}">
                         <i class="align-middle" data-feather="clock"></i>
-                        <span class="align-middle">Data Jadwal</span>
+                        <span class="align-middle">Data Shift</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('assignment.*') ? 'active' : '' }}">

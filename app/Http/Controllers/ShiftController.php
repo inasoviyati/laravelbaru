@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ShiftController extends Controller
 {
-    protected $title = 'Data Jadwal';
+    protected $title = 'Data Shift';
 
     public function index()
     {

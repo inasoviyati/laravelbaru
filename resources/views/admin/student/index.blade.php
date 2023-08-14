@@ -29,17 +29,20 @@
             @foreach ($students as $student)
                 <tr>
                     <td>{{ $student->npm }}</td>
-                    <td>{{ $student->name }}</td>
+                    <td>
+                        {{ $student->name }}
+                        @if ($student->role == 'instructor')
+                            <span class="text-danger">*</span>
+                        @endif
+                    </td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->roomUser->room->name }}</td>
                     <td class="text-end">
                         <form action="{{ route('student.destroy', ['student' => $student->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <a class="btn btn-primary" href="{{ route('student.show', ['student' => $student->id]) }}"
-                                role="button">Lihat</a>
-                            <a class="btn btn-warning" href="{{ route('student.edit', ['student' => $student->id]) }}"
-                                role="button">Ubah</a>
+                            <a class="btn btn-primary" href="{{ route('student.show', ['student' => $student->id]) }}" role="button">Lihat</a>
+                            <a class="btn btn-warning" href="{{ route('student.edit', ['student' => $student->id]) }}" role="button">Ubah</a>
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </form>
                     </td>
@@ -47,6 +50,10 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="my-3">
+        <span class="text-danger">(*</span> Instruktur
+    </div>
 @endsection
 
 @push('js')

@@ -31,6 +31,18 @@
         <input type="email" class="form-control" value="{{ $student->email }}" required disabled>
     </div>
 
+    <div class="form-row">
+
+        <div class="form-group mb-3 col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="instructor" name="is_instructor" {{ $student->role == 'instructor' ? 'checked' : '' }} disabled>
+                <label class="form-check-label" for="instructor">
+                    Atur sebagai Instruktur
+                </label>
+            </div>
+        </div>
+    </div>
+
     <div class="d-flex justify-content-between">
         <a href="{{ route('student.index') }}" class="btn btn-light">Kembali</a>
         <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning">Ubah</a>

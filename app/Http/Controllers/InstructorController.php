@@ -112,7 +112,9 @@ class InstructorController extends Controller
 
     public function destroy(User $instructor)
     {
-        $instructor->delete();
+        $instructor->update([
+            'role' => null
+        ]);
 
         return redirect()->back()
             ->with([
