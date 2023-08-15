@@ -47,12 +47,9 @@ class RoomController extends Controller
         return view('admin.room.show', [
             'title' => $this->title,
             'room' => $room,
-            'students' => User::where('role', '!=', 'admin')->where(function ($query) use ($room) {
-                $query->select('room_id')
-                    ->from('room_users')
-                    ->whereColumn('room_users.student_id', 'users.id')
-                    ->limit(1);
-            }, $room->id)->orderBy('name')->get()
+            'students' => User::whereHas('roomUsers', function ($q) use ($room) {
+                $q->where('room_id', $room->id);
+            })->orderBy('name')->get()
         ]);
     }
 
