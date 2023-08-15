@@ -26,13 +26,15 @@ class AssignmentController extends Controller
 
     public function create(Shift $shift, $day)
     {
+        $excludeInstructors = Assignment::where('shift_id', $shift->id)->pluck('instructor_id');
+
         return view('admin.assignment.create', [
             'title' => $this->title,
             'shift' => $shift,
             'day' => $day,
             'dayName' => $this->numberToDayName($day),
             'subjects' => Subject::orderBy('name')->get(),
-            'instructors' => User::where('role', 'instructor')->orderBy('name')->get(),
+            'instructors' => User::where('role', 'instructor')->whereNotIn('id', $excludeInstructors)->orderBy('name')->get(),
         ]);
     }
 
@@ -80,6 +82,8 @@ class AssignmentController extends Controller
 
     public function edit(Shift $shift, $day, Assignment $assignment, Request $request)
     {
+        $excludeInstructors = Assignment::where('shift_id', $shift->id)->where('instructor_id', '!=', $assignment->instructor_id)->pluck('instructor_id');
+
         return view('admin.assignment.edit', [
             'title' => $this->title,
             'shift' => $shift,
@@ -87,7 +91,7 @@ class AssignmentController extends Controller
             'assignment' => $assignment,
             'dayName' => $this->numberToDayName($day),
             'subjects' => Subject::orderBy('name')->get(),
-            'instructors' => User::where('role', 'instructor')->orderBy('name')->get(),
+            'instructors' => User::where('role', 'instructor')->whereNotIn('id', $excludeInstructors)->orderBy('name')->get(),
         ]);
     }
 
@@ -119,11 +123,11 @@ class AssignmentController extends Controller
             ]);
     }
 
-    public function destroy(Assignment $assignment)
+    public function destroy(Shift $shift, $day, Assignment $assignment)
     {
         $assignment->delete();
 
-        return redirect()->back()
+        return redirect()->route('assignment.index')
             ->with([
                 'color' => 'success',
                 'status' => "{$this->title} berhasil dihapus",

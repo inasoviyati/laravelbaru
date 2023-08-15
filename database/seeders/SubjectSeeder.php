@@ -22,10 +22,14 @@ class SubjectSeeder extends Seeder
         $subjects = [
             'Pemograman Web 1',
             'Pemograman Web 2',
-            'Pemograman Web 3',
             'Pemograman Dasar 1',
             'Pemograman Dasar 2',
             'Pemograman Dasar 3',
+            'Pemograman Berorientasi Objek',
+            'Pemograman Basis Data',
+            'Konsep Sistem Informasi',
+            'Pengantar Teknologi Informasi',
+            'Multimedia',
         ];
 
         foreach ($subjects as $subject) {

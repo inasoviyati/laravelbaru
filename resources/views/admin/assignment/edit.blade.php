@@ -3,6 +3,16 @@
 @push('title', $title)
 @push('header', 'Ubah ' . $title)
 
+@push('action')
+    <div class="text-end">
+        <form action="{{ route('assignment.destroy', ['assignment' => $assignment->id, 'shift' => $shift, 'day' => $day]) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-danger">Hapus</button>
+        </form>
+    </div>
+@endpush
+
 @section('content')
     <form method="post" action="{{ route('assignment.update', ['shift' => $shift, 'day' => $day, 'assignment' => $assignment->id]) }}" class="row" autocomplete="off">
         @csrf
