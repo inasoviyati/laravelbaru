@@ -78,18 +78,38 @@ class AssignmentController extends Controller
         ]);
     }
 
-    public function edit(Assignment $assignment)
+    public function edit(Shift $shift, $day, Assignment $assignment, Request $request)
     {
         return view('admin.assignment.edit', [
             'title' => $this->title,
-            'assignment' => $assignment
+            'shift' => $shift,
+            'day' => $day,
+            'assignment' => $assignment,
+            'dayName' => $this->numberToDayName($day),
+            'subjects' => Subject::orderBy('name')->get(),
+            'instructors' => User::where('role', 'instructor')->orderBy('name')->get(),
         ]);
     }
 
-    public function update(Request $request, Assignment $assignment)
+    public function update(Request $request, Shift $shift, $day, Assignment $assignment)
     {
-        Assignment::find($assignment->id)->update([
-            'name' => $request->name,
+        $request->merge([
+            'shift' => $shift->id,
+            'day' => $day,
+        ]);
+
+        $request->validate([
+            'instructor' => 'required|exists:users,id',
+            'subject' => 'required|exists:subjects,id',
+            'shift' => 'required|exists:shifts,id',
+            'day' => 'required|digits_between:1,7',
+        ]);
+
+        $assignment->update([
+            'instructor_id' => $request->instructor,
+            'subject_id' => $request->subject,
+            'shift_id' => $shift->id,
+            'day' => $day,
         ]);
 
         return redirect()->route('assignment.index')
