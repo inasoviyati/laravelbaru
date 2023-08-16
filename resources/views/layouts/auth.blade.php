@@ -62,6 +62,8 @@
                 </div>
             </main>
 
+            @yield('others')
+
             @include('layouts.footer')
 
         </div>

@@ -32,8 +32,7 @@
                         <form action="{{ route('subject.destroy', ['subject' => $subject->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <a class="btn btn-warning" href="{{ route('subject.edit', ['subject' => $subject->id]) }}"
-                                role="button">Ubah</a>
+                            <a class="btn btn-warning" href="{{ route('subject.edit', ['subject' => $subject->id]) }}" role="button">Ubah</a>
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </form>
                     </td>

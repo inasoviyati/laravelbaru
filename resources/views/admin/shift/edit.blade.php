@@ -31,7 +31,7 @@
 
         <div class="d-flex justify-content-between">
             <a href="{{ route('shift.index') }}" class="btn btn-light">Kembali</a>
-            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-warning">Ubah</button>
         </div>
     </form>
 @endsection
