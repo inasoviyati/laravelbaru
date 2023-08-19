@@ -12,6 +12,12 @@ if (form) {
 
 $('#dataTable>thead>tr>th:contains("ID"), #dataTable>thead>tr>th:contains("NPM")').attr('width', "1%")
 $('button[class*="btn-danger"]:submit:contains("Hapus")').attr('onclick', "return confirm('Yakin akan menghapus data ini?')")
-$('button[class*="btn-success"]:submit:contains("Tambah")').on('click', function () {
-    $(this).attr("disabled", "disabled")
+$('button[class*="btn"]:submit').on('click', function () {
+    $(this).attr("disabled", "disabled").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+})
+
+$(document).ready(function () {
+    $(document).ready(function () {
+        // $('#loadingSpinner').fadeOut(300, function () { $(this).remove(); })
+    })
 })

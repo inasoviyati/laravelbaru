@@ -7,6 +7,11 @@
 </head>
 
 <body data-theme="light">
+    <div class="d-flex h-100 w-100 bg-white position-absolute" style="z-index: 1100;" id="loadingSpinner">
+        <div class="m-auto">
+            <div class="spinner-grow text-warning"></div>
+        </div>
+    </div>
     <div class="wrapper">
 
         @include('layouts.sidebar')

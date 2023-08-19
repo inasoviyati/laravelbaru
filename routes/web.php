@@ -4,6 +4,7 @@ use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AssignmentStudentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\InstructorAttendanceController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ReportController;
@@ -49,5 +50,6 @@ Route::middleware('auth')->group(function () {
         'score' => ScoreController::class,
         'shift' => ShiftController::class,
         'subject' => SubjectController::class,
+        'facility' => FacilityController::class,
     ]);
 });

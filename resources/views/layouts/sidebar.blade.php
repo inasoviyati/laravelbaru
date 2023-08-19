@@ -67,6 +67,12 @@
                         <span class="align-middle">Data Kelas</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ request()->routeIs('facility.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('facility.index') }}">
+                        <i class="align-middle" data-feather="columns"></i>
+                        <span class="align-middle">Data Fasilitas</span>
+                    </a>
+                </li>
                 <li class="sidebar-item {{ request()->routeIs('shift.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('shift.index') }}">
                         <i class="align-middle" data-feather="clock"></i>
@@ -84,6 +90,18 @@
             @if (auth()->user()->role == 'instructor')
                 <li class="sidebar-header">
                     Instruktur
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="#">
+                        <i class="align-middle" data-feather="clipboard"></i>
+                        <span class="align-middle">Absen Instruktur</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="#">
+                        <i class="align-middle" data-feather="clipboard"></i>
+                        <span class="align-middle">Absen Mahasiswa</span>
+                    </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="#">
@@ -105,15 +123,8 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="clipboard"></i>
-                        <span class="align-middle">Absen Instruktur</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="cli
-                        board"></i>
-                        <span class="align-middle">Absen Mahasiswa</span>
+                        <i class="align-middle" data-feather="calendar"></i>
+                        <span class="align-middle">Jadwal</span>
                     </a>
                 </li>
             @endif
@@ -124,8 +135,14 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="clipboard"></i>
-                        <span class="align-middle">Tugas</span>
+                        <i class="align-middle" data-feather="users"></i>
+                        <span class="align-middle">Ruang Kelas</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="#">
+                        <i class="align-middle" data-feather="calendar"></i>
+                        <span class="align-middle">Jadwal</span>
                     </a>
                 </li>
             @endif
