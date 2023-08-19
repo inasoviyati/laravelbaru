@@ -12,15 +12,6 @@ class StudentController extends Controller
 
     protected User $student;
 
-    public function __construct()
-    {
-        $userId = request()->route()->student;
-        if (!$userId) return;
-        $userable = User::findOrFail($userId);
-        abort_if($userable->role == 'admin', 401);
-        $this->student = $userable;
-    }
-
     public function index()
     {
         return view('admin.student.index', [

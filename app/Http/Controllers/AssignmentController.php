@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assignment;
+use App\Models\AssignmentStudent;
+use App\Models\Room;
 use App\Models\Shift;
 use App\Models\Subject;
 use App\Models\User;
@@ -66,23 +68,10 @@ class AssignmentController extends Controller
             ]);
     }
 
-    public function show(Assignment $assignment)
-    {
-        return view('admin.assignment.show', [
-            'title' => $this->title,
-            'assignment' => $assignment,
-            'students' => User::where('role', '!=', 'admin')->where(function ($query) use ($assignment) {
-                $query->select('assignment_id')
-                    ->from('assignment_users')
-                    ->whereColumn('assignment_users.student_id', 'users.id')
-                    ->limit(1);
-            }, $assignment->id)->get()
-        ]);
-    }
-
     public function edit(Shift $shift, $day, Assignment $assignment, Request $request)
     {
         $excludeInstructors = Assignment::where('shift_id', $shift->id)->where('instructor_id', '!=', $assignment->instructor_id)->pluck('instructor_id');
+        $assignmentStundents = AssignmentStudent::where('assignment_id', $assignment->id)->get();
 
         return view('admin.assignment.edit', [
             'title' => $this->title,
@@ -90,8 +79,11 @@ class AssignmentController extends Controller
             'day' => $day,
             'assignment' => $assignment,
             'dayName' => $this->numberToDayName($day),
+            'rooms' => Room::orderBy('name')->get(),
+            'students' => User::where('role', '!=', 'admin')->orWhere('role', null)->whereNotIn('id', $assignmentStundents->pluck('student_id'))->orderBy('name')->get(),
             'subjects' => Subject::orderBy('name')->get(),
             'instructors' => User::where('role', 'instructor')->whereNotIn('id', $excludeInstructors)->orderBy('name')->get(),
+            'assignmentStudents' => $assignmentStundents,
         ]);
     }
 
@@ -132,10 +124,5 @@ class AssignmentController extends Controller
                 'color' => 'success',
                 'status' => "{$this->title} berhasil dihapus",
             ]);
-    }
-
-    public function createWithDay(Shift $shift, $day)
-    {
-        return $day;
     }
 }

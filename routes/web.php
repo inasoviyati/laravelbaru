@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\AssignmentStudentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstructorAttendanceController;
@@ -36,7 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('assignment', [AssignmentController::class, 'index'])->name('assignment.index');
-    Route::resource('shift/{shift}/day/{day}/assignment', AssignmentController::class, ['names' => 'assignment'])->except('index')->where(['day' => '[1-7]']);
+    Route::resource('shift/{shift}/day/{day}/assignment', AssignmentController::class, ['names' => 'assignment'])->except('index', 'show')->where(['day' => '[1-7]']);
+    Route::resource('assignment/{assignment}/assignmentStudent', AssignmentStudentController::class, ['names' => 'assignmentStudent'])->only('store', 'show', 'destroy');
     Route::resources([
         'student' => StudentController::class,
         'room' => RoomController::class,

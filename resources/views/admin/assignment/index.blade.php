@@ -4,11 +4,6 @@
 @push('header', 'Daftar ' . $title)
 
 @section('content')
-    @if (session('status'))
-        <div class="alert border border-{{ session('color') }} text-{{ session('color') }} mb-3 p-3 text-center">
-            {{ session('status') }}</div>
-    @endif
-
     <table class="table display nowrap" width="100%">
         <thead>
             <tr class="text-center bg-light border">

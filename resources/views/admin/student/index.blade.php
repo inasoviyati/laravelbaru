@@ -10,11 +10,6 @@
 @endpush
 
 @section('content')
-    @if (session('status'))
-        <div class="alert border border-{{ session('color') }} text-{{ session('color') }} mb-3 p-3 text-center">
-            {{ session('status') }}</div>
-    @endif
-
     <table id="dataTable" class="display nowrap" width="100%">
         <thead>
             <tr>

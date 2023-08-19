@@ -11835,7 +11835,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
+			"sInfoFiltered": "dari _MAX_ data",
 	
 	
 			/**

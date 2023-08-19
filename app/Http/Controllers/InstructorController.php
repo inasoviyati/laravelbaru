@@ -10,17 +10,6 @@ class InstructorController extends Controller
 {
     protected $title = 'Instruktur';
 
-    protected User $student;
-
-    public function __construct()
-    {
-        $userId = request()->route()->student;
-        if (!$userId) return;
-        $userable = User::findOrFail($userId);
-        abort_if($userable->role == null, 401);
-        $this->student = $userable;
-    }
-
     public function index()
     {
         return view('admin.instructor.index', [

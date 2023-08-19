@@ -42,6 +42,14 @@
             </nav>
 
             <main class="content">
+
+                @if (session('status'))
+                    <div class="alert alert-{{ session('color') }} text-{{ session('color') }} mb-5 p-3 alert-dismissible fade show">
+                        {{ session('status') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+
                 <div class="container-fluid p-0">
                     <h1 class="h3 mb-3">@stack('title')</h1>
                     <div class="row">

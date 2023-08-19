@@ -73,25 +73,49 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">Pilih Mahasiswa</h1>
+                    <div class="form-row w-100">
+                        <div class="form-group col-6 row">
+                            <label class="modal-title mb-2 no-wrap col-auto pt-2 fw-bold">Ruang Kelas</label>
+                            <select id="filterRoomSelect" class="form-select col">
+                                @foreach ($rooms as $room)
+                                    <option value="{{ $room->name }}">{{ $room->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <table id="dataTableStudents" class="display nowrap" width="100%">
-                        <thead class="bg-light">
-                            <tr>
-                                <th>NPM</th>
-                                <th>Nama</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form action="{{ route('assignmentStudent.store', $assignment->id) }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <table id="dataTableStudents" class="display nowrap" width="100%">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="text-center"><input type="checkbox" id="selectAll"></th>
+                                    <th>NPM</th>
+                                    <th>Nama</th>
+                                    <th>Kelas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($students as $student)
+                                    <tr>
+                                        <td class="text-center">
+                                            <input type="checkbox" name="users[]" value="{{ $student->id }}" id="selectAll">
+                                        </td>
+                                        <td width="1%">{{ $student->npm }}</td>
+                                        <td class="text-start">{{ $student->name }}</td>
+                                        <td>{{ $student->roomUser->room->name }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success">Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -117,7 +141,6 @@
                             <table id="dataTableAssigned" class="display nowrap" width="100%">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th width="1%">No</th>
                                         <th>NPM</th>
                                         <th>Nama</th>
                                         <th>Kelas</th>
@@ -125,6 +148,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($assignmentStudents as $assignmentStudent)
+                                        <tr>
+                                            <td>{{ $assignmentStudent->user->npm }}</td>
+                                            <td>{{ $assignmentStudent->user->name }}</td>
+                                            <td>{{ $assignmentStudent->user->roomUser->room->name }}</td>
+                                            <td>
+                                                <form action="{{ route('assignmentStudent.destroy', ['assignment' => $assignment->id, 'assignmentStudent' => $assignmentStudent->id]) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-danger" name="" type="submit">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -141,20 +178,51 @@
             $('#dataTableAssigned').DataTable({
                 responsive: true,
                 columnDefs: [{
-                    targets: 4,
+                    targets: 3,
                     orderable: false,
                     searchable: false
                 }],
                 pageLength: 50,
-                order: [2, 'asc']
+                order: [
+                    [2, 'asc'],
+                    [1, 'asc']
+                ]
             });
-        });
 
-        $(document).ready(function() {
-            $('#dataTableStudents').DataTable({
+            var table = $('#dataTableStudents').DataTable({
+                columnDefs: [{
+                    targets: [0],
+                    orderable: false,
+                    searchable: false
+                }, {
+                    targets: [3],
+                    searchable: true,
+                    visible: false
+                }],
                 responsive: true,
                 pageLength: 50,
-                order: [1, 'asc']
+                order: [
+                    [3, 'asc'],
+                    [2, 'asc']
+                ]
+            });
+
+            $('#filterRoomSelect').on('change', function() {
+                var selectedOption = this.value;
+                table.column(3).search(selectedOption).draw();
+            });
+
+            var initialSelectedOption = $('#filterRoomSelect').val();
+            table.column(3).search(initialSelectedOption).draw();
+
+            $('#dataTableStudents tbody').on('click', 'tr', function() {
+                var checkbox = $(this).find('input[type="checkbox"]');
+                checkbox.prop('checked', !checkbox.prop('checked'));
+            });
+
+            $('#dataTableStudents #selectAll').on('click', function() {
+                var isChecked = $(this).prop('checked');
+                $('#dataTableStudents tbody input[type="checkbox"]').prop('checked', isChecked);
             });
         });
     </script>
