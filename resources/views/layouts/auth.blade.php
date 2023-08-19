@@ -4,21 +4,12 @@
 <head>
     @include('layouts.header')
     @stack('css')
-    <style>
-        .spinner-border{
-            background-image: url('assets/img/icons/icon-48x48.png');
-            background-size: contain;
-            width: 48px;
-            height: 48px;
-            border: unset;
-        }
-    </style>
 </head>
 
 <body data-theme="light">
     <div class="d-flex h-100 w-100 bg-white position-absolute" style="z-index: 1100;" id="loadingSpinner">
         <div class="m-auto">
-            <div class="spinner-border text-warning"></div>
+            <div class="spinner-border text-warning" style="background-image: url('assets/img/icons/icon-48x48.png'); background-size: contain; width: 48px; height: 48px; border: unset;"></div>
         </div>
     </div>
     <div class="wrapper">
