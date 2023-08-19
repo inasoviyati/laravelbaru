@@ -18,7 +18,7 @@
 
         <div class="d-flex justify-content-between">
             <a href="{{ route('room.index') }}" class="btn btn-light">Kembali</a>
-            <button type="submit" class="btn btn-success">Save</button>
+            <button type="submit" class="btn btn-success">Tambah</button>
         </div>
     </form>
 @endsection

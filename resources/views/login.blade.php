@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="m-sm-3">
                                     @if ($errors->any())
-                                        <div class="alert alert-danger p-3">
+                                        <div class="alert alert-danger text-danger p-3">
                                             {!! implode('', $errors->all('<div>:message</div>')) !!}
                                         </div>
                                     @endif

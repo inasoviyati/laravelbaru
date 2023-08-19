@@ -63,8 +63,8 @@ class AssignmentController extends Controller
 
         return redirect()->route('assignment.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil ditambahkan",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " ditambahkan",
             ]);
     }
 
@@ -110,8 +110,8 @@ class AssignmentController extends Controller
 
         return redirect()->route('assignment.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil diperbarui",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " diperbarui",
             ]);
     }
 
@@ -121,8 +121,8 @@ class AssignmentController extends Controller
 
         return redirect()->route('assignment.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil dihapus",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " dihapus",
             ]);
     }
 }

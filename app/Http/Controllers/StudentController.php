@@ -51,18 +51,17 @@ class StudentController extends Controller
 
         return redirect()->route('student.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil ditambahkan",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " ditambahkan",
             ]);
     }
 
-    public function show()
+    public function show(User $student)
     {
 
         return view('admin.student.show', [
-
             'title' => $this->title,
-            'student' => $this->student,
+            'student' => $student,
             'rooms' => Room::orderBy('name')->get()
         ]);
     }
@@ -106,8 +105,8 @@ class StudentController extends Controller
 
         return redirect()->route('student.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil diperbarui",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " diperbarui",
             ]);
     }
 
@@ -117,8 +116,8 @@ class StudentController extends Controller
 
         return redirect()->back()
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil dihapus",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " dihapus",
             ]);
     }
 

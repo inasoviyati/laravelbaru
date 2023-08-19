@@ -64,7 +64,7 @@
                 <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('room.index') }}">
                         <i class="align-middle" data-feather="users"></i>
-                        <span class="align-middle">Ruang Kelas</span>
+                        <span class="align-middle">Data Kelas</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('shift.*') ? 'active' : '' }}">

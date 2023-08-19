@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use App\Models\AssignmentStudent;
 use Illuminate\Http\Request;
+use Throwable;
 
 class AssignmentStudentController extends Controller
 {
@@ -12,11 +13,16 @@ class AssignmentStudentController extends Controller
 
     public function store(Request $request, Assignment $assignment)
     {
-        foreach ($request->users as $users_id) {
-            AssignmentStudent::create([
-                'assignment_id' => $assignment->id,
-                'student_id' => $users_id
-            ]);
+        try {
+            foreach ($request->users as $users_id) {
+                AssignmentStudent::create([
+                    'assignment_id' => $assignment->id,
+                    'student_id' => $users_id
+                ]);
+            }
+        } catch (Throwable $th) {
+            $colorAlert = 'danger';
+            $statusAlert = 'gagal';
         }
 
         return redirect()->route('assignment.edit', [
@@ -25,8 +31,8 @@ class AssignmentStudentController extends Controller
             'assignment' => $assignment->id
         ])
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil ditambahkan",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " ditambahkan",
             ]);
     }
 
@@ -45,8 +51,8 @@ class AssignmentStudentController extends Controller
             'assignment' => $assignment->id
         ])
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil dihapus",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " dihapus",
             ]);
     }
 }

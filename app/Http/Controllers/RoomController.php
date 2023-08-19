@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    protected $title = 'Ruang Kelas';
+    protected $title = 'Data Kelas';
 
     public function index()
     {
@@ -37,8 +37,8 @@ class RoomController extends Controller
 
         return redirect()->route('room.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil ditambahkan",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " ditambahkan",
             ]);
     }
 
@@ -69,8 +69,8 @@ class RoomController extends Controller
 
         return redirect()->route('room.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil diperbarui",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " diperbarui",
             ]);
     }
 
@@ -80,8 +80,8 @@ class RoomController extends Controller
 
         return redirect()->back()
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil dihapus",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " dihapus",
             ]);
     }
 }

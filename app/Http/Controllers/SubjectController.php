@@ -37,8 +37,8 @@ class SubjectController extends Controller
 
         return redirect()->route('subject.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil ditambahkan",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " ditambahkan",
             ]);
     }
 
@@ -72,8 +72,8 @@ class SubjectController extends Controller
 
         return redirect()->route('subject.index')
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil diperbarui",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " diperbarui",
             ]);
     }
 
@@ -83,8 +83,8 @@ class SubjectController extends Controller
 
         return redirect()->back()
             ->with([
-                'color' => 'success',
-                'status' => "{$this->title} berhasil dihapus",
+                'color' => $colorAlert ?? 'success',
+                'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " dihapus",
             ]);
     }
 }

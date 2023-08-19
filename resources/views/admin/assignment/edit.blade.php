@@ -75,7 +75,7 @@
                 <div class="modal-header">
                     <div class="form-row w-100">
                         <div class="form-group col-6 row">
-                            <label class="modal-title mb-2 no-wrap col-auto pt-2 fw-bold">Ruang Kelas</label>
+                            <label class="modal-title mb-2 no-wrap col-auto pt-2 fw-bold">Kelas</label>
                             <select id="filterRoomSelect" class="form-select col">
                                 @foreach ($rooms as $room)
                                     <option value="{{ $room->name }}">{{ $room->name }}</option>
