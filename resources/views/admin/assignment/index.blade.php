@@ -2,7 +2,26 @@
 
 @push('title', $title)
 @push('header', 'Daftar ' . $title)
+@push('css')
+    <style>
+        .link-cell {
+            position: relative;
+        }
 
+        .link-overlay:hover {
+            border: 1px solid #1cbb8c;
+        }
+
+        .link-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+    </style>
+@endpush
 @section('content')
     <table class="table table-striped display nowrap border" width="100%">
         <thead>
@@ -23,7 +42,7 @@
                         <code>{!! $shift->timeFormated('time_start') . ' &mdash; ' . $shift->timeFormated('time_end') !!}</code>
                     </td>
                     @for ($i = 1; $i <= 6; $i++)
-                        <td class="text-center small">
+                        <td class="text-center small link-cell">
                             @php
                                 $assignment = $assignments
                                     ->where('shift_id', $shift->id)
@@ -31,13 +50,12 @@
                                     ->first();
                             @endphp
                             @if ($assignment)
-                                <a href="{{ route('assignment.edit', ['shift' => $shift->id, 'day' => $i, 'assignment' => $assignment->id]) }}">
-                                    {{ $assignment->subject->alias }}
-                                </a>
+                                <a href="{{ route('assignment.edit', ['shift' => $shift->id, 'day' => $i, 'assignment' => $assignment->id]) }}" class="link-overlay"></a>
+                                {{ $assignment->subject->alias }}
                                 <div>{{ Str::words($assignment->instructor->name, 2, '...') }}</div>
                                 <div class="text-muted">{{ $assignment->assignmentStudents->count() }} orang</div>
                             @else
-                                <a class="btn btn-sm btn-success" href="{{ route('assignment.create', ['shift' => $shift->id, 'day' => $i]) }}" role="button">Tambah</a>
+                                <a href="{{ route('assignment.create', ['shift' => $shift->id, 'day' => $i]) }}" class="link-overlay"></a>
                             @endif
                         </td>
                     @endfor

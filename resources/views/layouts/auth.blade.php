@@ -4,6 +4,15 @@
 <head>
     @include('layouts.header')
     @stack('css')
+    <style>
+        .spinner-border{
+            background-image: url('assets/img/icons/icon-48x48.png');
+            background-size: contain;
+            width: 48px;
+            height: 48px;
+            border: unset;
+        }
+    </style>
 </head>
 
 <body data-theme="light">
