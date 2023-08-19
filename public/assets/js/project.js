@@ -18,6 +18,6 @@ $('button[class*="btn"]:submit').on('click', function () {
 
 $(document).ready(function () {
     $(document).ready(function () {
-        // $('#loadingSpinner').fadeOut(300, function () { $(this).remove(); })
+        $('#loadingSpinner').fadeOut(300, function () { $(this).remove(); })
     })
 })
