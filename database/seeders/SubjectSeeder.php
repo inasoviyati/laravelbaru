@@ -20,21 +20,22 @@ class SubjectSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $subjects = [
-            'Pemograman Web 1',
-            'Pemograman Web 2',
-            'Pemograman Dasar 1',
-            'Pemograman Dasar 2',
-            'Pemograman Dasar 3',
-            'Pemograman Berorientasi Objek',
-            'Pemograman Basis Data',
-            'Konsep Sistem Informasi',
-            'Pengantar Teknologi Informasi',
-            'Multimedia',
+            ['alias' => 'Web 1', 'name' => 'Pemograman Web 1'],
+            ['alias' => 'Web 2', 'name' => 'Pemograman Web 2'],
+            ['alias' => 'P 1', 'name' => 'Pemograman Dasar 1'],
+            ['alias' => 'P 2', 'name' => 'Pemograman Dasar 2'],
+            ['alias' => 'P 3', 'name' => 'Pemograman Dasar 3'],
+            ['alias' => 'PBO', 'name' => 'Pemograman Berorientasi Objek'],
+            ['alias' => 'PBD', 'name' => 'Pemograman Basis Data'],
+            ['alias' => 'KSI', 'name' => 'Konsep Sistem Informasi'],
+            ['alias' => 'PTI', 'name' => 'Pengantar Teknologi Informasi'],
+            ['alias' => 'MM', 'name' => 'Multimedia']
         ];
 
-        foreach ($subjects as $subject) {
+        foreach ($subjects as $key => $subject) {
             Subject::create([
-                'name' => $subject,
+                'name' => $subjects[$key]['name'],
+                'alias' => $subjects[$key]['alias']
             ]);
         }
     }

@@ -4,7 +4,7 @@
 @push('header', 'Daftar ' . $title)
 
 @section('content')
-    <table class="table display nowrap" width="100%">
+    <table class="table table-striped display nowrap border" width="100%">
         <thead>
             <tr class="text-center bg-light border">
                 <th>Waktu</th>
@@ -23,7 +23,7 @@
                         <code>{!! $shift->timeFormated('time_start') . ' &mdash; ' . $shift->timeFormated('time_end') !!}</code>
                     </td>
                     @for ($i = 1; $i <= 6; $i++)
-                        <td class="text-center">
+                        <td class="text-center small">
                             @php
                                 $assignment = $assignments
                                     ->where('shift_id', $shift->id)
@@ -31,9 +31,11 @@
                                     ->first();
                             @endphp
                             @if ($assignment)
-                                <a href="{{ route('assignment.edit', ['shift' => $shift->id, 'day' => $i, 'assignment' => $assignment->id]) }}" class="small">
-                                    {{ $assignment->subject->name }}
+                                <a href="{{ route('assignment.edit', ['shift' => $shift->id, 'day' => $i, 'assignment' => $assignment->id]) }}">
+                                    {{ $assignment->subject->alias }}
                                 </a>
+                                <div>{{ Str::words($assignment->instructor->name, 2, '...') }}</div>
+                                <div class="text-muted">{{ $assignment->assignmentStudents->count() }} orang</div>
                             @else
                                 <a class="btn btn-sm btn-success" href="{{ route('assignment.create', ['shift' => $shift->id, 'day' => $i]) }}" role="button">Tambah</a>
                             @endif

@@ -29,10 +29,12 @@ class SubjectController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'alias' => 'required|string',
         ]);
 
         Subject::create([
             'name' => $request->name,
+            'alias' => $request->alias,
         ]);
 
         return redirect()->route('subject.index')
@@ -68,6 +70,7 @@ class SubjectController extends Controller
     {
         Subject::find($subject->id)->update([
             'name' => $request->name,
+            'alias' => $request->alias,
         ]);
 
         return redirect()->route('subject.index')

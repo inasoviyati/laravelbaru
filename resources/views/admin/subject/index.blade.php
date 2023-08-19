@@ -15,6 +15,7 @@
             <tr>
                 <th>ID</th>
                 <th>Nama</th>
+                <th>Alias</th>
                 <th width="1%">Aksi</th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                 <tr>
                     <td>{{ $subject->id }}</td>
                     <td>{{ $subject->name }}</td>
+                    <td>{{ $subject->alias }}</td>
                     <td class="text-end">
                         <form action="{{ route('subject.destroy', ['subject' => $subject->id]) }}" method="POST">
                             @csrf

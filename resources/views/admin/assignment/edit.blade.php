@@ -152,7 +152,7 @@
                                         <tr>
                                             <td>{{ $assignmentStudent->user->npm }}</td>
                                             <td>{{ $assignmentStudent->user->name }}</td>
-                                            <td>{{ $assignmentStudent->user->roomUser->room->name }}</td>
+                                            <td>{{ $assignmentStudent->roomStudent->room->name }}</td>
                                             <td>
                                                 <form action="{{ route('assignmentStudent.destroy', ['assignment' => $assignment->id, 'assignmentStudent' => $assignmentStudent->id]) }}" method="POST">
                                                     @csrf

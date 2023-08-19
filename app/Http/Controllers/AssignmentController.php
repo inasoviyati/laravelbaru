@@ -21,7 +21,7 @@ class AssignmentController extends Controller
     {
         return view('admin.assignment.index', [
             'title' => $this->title,
-            'assignments' => Assignment::with('subject')->get(),
+            'assignments' => Assignment::with('subject','assignmentStudents')->get(),
             'shifts' => Shift::orderBy('time_start')->get(),
         ]);
     }
@@ -54,14 +54,14 @@ class AssignmentController extends Controller
             'day' => 'required|digits_between:1,7',
         ]);
 
-        Assignment::create([
+        $assignment = Assignment::create([
             'instructor_id' => $request->instructor,
             'subject_id' => $request->subject,
             'shift_id' => $shift->id,
             'day' => $day,
         ]);
 
-        return redirect()->route('assignment.index')
+        return redirect()->route('assignment.edit', ['shift' => $shift->id, 'day' => $day, 'assignment' => $assignment->id])
             ->with([
                 'color' => $colorAlert ?? 'success',
                 'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " ditambahkan",

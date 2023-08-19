@@ -9,8 +9,19 @@
         @method('PUT')
         
         <div class="form-group mb-3 col-md-6">
-            <label for="name">Nama</label>
+            <label for="alias">Nama</label>
             <input type="text" id="name" name="name" class="form-control" value="{{ $subject->name }}">
+            @error('name')
+                <div class="text-danger small">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <label for="alias">Alias</label>
+            <input type="text" id="alias" name="alias" class="form-control" value="{{ $subject->alias }}">
+            @error('alias')
+                <div class="text-danger small">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="d-flex justify-content-between">
