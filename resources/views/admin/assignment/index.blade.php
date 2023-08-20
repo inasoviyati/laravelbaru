@@ -39,10 +39,10 @@
             @foreach ($shifts as $shift)
                 <tr>
                     <td class="text-center">
-                        <code>{!! $shift->timeFormated('time_start') . ' &mdash; ' . $shift->timeFormated('time_end') !!}</code>
+                        {!! $shift->timeFormated('time_start') . ' <span class="mx-1" style="opacity: 0.4">&ndash;</span> ' . $shift->timeFormated('time_end') !!}
                     </td>
                     @for ($i = 1; $i <= 6; $i++)
-                        <td class="text-center small link-cell">
+                        <td class="text-center link-cell">
                             @php
                                 $assignment = $assignments
                                     ->where('shift_id', $shift->id)
@@ -51,7 +51,7 @@
                             @endphp
                             @if ($assignment)
                                 <a href="{{ route('assignment.edit', ['shift' => $shift->id, 'day' => $i, 'assignment' => $assignment->id]) }}" class="link-overlay"></a>
-                                {{ $assignment->subject->alias }}
+                                <div class="fw-bold">{{ $assignment->subject->alias }}</div>
                                 <div>{{ Str::words($assignment->instructor->name, 2, '...') }}</div>
                                 <div class="text-muted">{{ $assignment->assignmentStudents->count() }} orang</div>
                             @else
@@ -63,4 +63,11 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="mt-3">
+        <div class="text-muted small">
+            <i class="align-middle text-info" data-feather="info"></i>
+            Klik pada kolom kosong untuk tambah
+        </div>
+    </div>
 @endsection
