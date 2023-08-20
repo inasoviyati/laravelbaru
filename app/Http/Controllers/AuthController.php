@@ -26,6 +26,10 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ], [
+            'email.required' => 'alamat surel harus diisi.',
+            'email.email' => 'alamat surel tidak valid.',
+            'password' => 'alamat surel tidak valid.',
         ]);
 
         if (Auth::attempt($credentials, $request->remember)) {

@@ -41,11 +41,11 @@
                                         @csrf
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
-                                            <input class="form-control form-control-lg" type="email" name="email" placeholder="Masukkan email" />
+                                            <input class="form-control form-control-lg" type="text" name="email" placeholder="Masukkan email" required />
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Password</label>
-                                            <input class="form-control form-control-lg" type="password" name="password" placeholder="Masukkan password" value="password" />
+                                            <input class="form-control form-control-lg" type="password" name="password" placeholder="Masukkan password" value="password" required />
                                         </div>
                                         <div>
                                             <div class="form-check align-items-center">
@@ -69,6 +69,42 @@
     <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/project.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            var isValid = true;
+
+            $('form').find('[required]').each(function() {
+                if (!validateInput($(this)) && (isValid == true)) {
+                    isValid = false;
+                }
+            });
+
+            if (isValid) {
+                $('button[class*="btn"]:submit').removeAttr('disabled', 'disabled')
+            } else {
+                $('button[class*="btn"]:submit').attr('disabled', 'disabled')
+            }
+
+            $('input').on('change', function() {
+                isValid = validateInput($(this));
+                if (isValid) {
+                    $('button[class*="btn"]:submit').removeAttr('disabled', 'disabled')
+                } else {
+                    $('button[class*="btn"]:submit').attr('disabled', 'disabled')
+                }
+            });
+
+            function validateInput(input) {
+                if (!input.val()) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        });
+    </script>
+
 
 </body>
 
