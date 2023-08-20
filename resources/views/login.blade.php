@@ -6,18 +6,23 @@
 </head>
 
 <body>
+
+    <div class="d-flex h-100 w-100 bg-white position-absolute" style="z-index: 1100;" id="loadingSpinner">
+        <div class="m-auto">
+            <div class="spinner-border text-warning" style="background-image: url('{{ asset('img/icons/icon-48x48.png') }}'); background-size: contain; width: 48px; height: 48px; border: unset;"></div>
+        </div>
+    </div>
+
     <main class="d-flex w-100">
         <div class="container d-flex flex-column">
             <div class="row vh-100">
                 <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
                     <div class="d-table-cell align-middle">
-
                         <div class="text-center my-4">
                             <div class="text-center">
                                 <img src="{{ asset('img/logo/logo.png') }}" class="img-fluid w-50" alt="">
                             </div>
                         </div>
-
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center mb-4">
@@ -61,7 +66,9 @@
         </div>
     </main>
 
-    <script src="js/app.js"></script>
+    <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/project.js') }}"></script>
 
 </body>
 
