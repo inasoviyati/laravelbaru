@@ -3,12 +3,6 @@
 @push('title', $title)
 @push('header', 'Daftar ' . $title)
 
-@push('action')
-    <div class="text-end">
-        <a class="btn btn-success" href="{{ route('instructor.create') }}" role="button">Tambah</a>
-    </div>
-@endpush
-
 @section('content')
     <table id="dataTable" class="display nowrap" width="100%">
         <thead>
@@ -34,10 +28,6 @@
                         <form action="{{ route('instructor.destroy', ['instructor' => $instructor->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            {{-- <a class="btn btn-primary" href="{{ route('instructor.show', ['instructor' => $instructor->id]) }}"
-                                role="button">Lihat</a>
-                            <a class="btn btn-warning" href="{{ route('instructor.edit', ['instructor' => $instructor->id]) }}"
-                                role="button">Ubah</a> --}}
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </form>
                         @endif

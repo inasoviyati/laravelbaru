@@ -26,3 +26,27 @@ var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
 })
+
+$(document).ready(function () {
+    checkFormStatus();
+
+    $("input[required]").on("input", function () {
+        checkFormStatus();
+    });
+});
+
+function checkFormStatus() {
+    var allRequiredFilled = true;
+    $("input[required]").each(function () {
+        if ($(this).val() === "") {
+            allRequiredFilled = false;
+            return false;
+        }
+    });
+
+    if (allRequiredFilled) {
+        $(":submit").removeAttr("disabled");
+    } else {
+        $(":submit").attr("disabled", "disabled");
+    }
+}

@@ -69,43 +69,6 @@
     <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/project.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            var isValid = true;
-
-            $('form').find('[required]').each(function() {
-                if (!validateInput($(this)) && (isValid == true)) {
-                    isValid = false;
-                }
-            });
-
-            if (isValid) {
-                $('button[class*="btn"]:submit').removeAttr('disabled', 'disabled')
-            } else {
-                $('button[class*="btn"]:submit').attr('disabled', 'disabled')
-            }
-
-            $('input').on('change', function() {
-                isValid = validateInput($(this));
-                if (isValid) {
-                    $('button[class*="btn"]:submit').removeAttr('disabled', 'disabled')
-                } else {
-                    $('button[class*="btn"]:submit').attr('disabled', 'disabled')
-                }
-            });
-
-            function validateInput(input) {
-                if (!input.val()) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        });
-    </script>
-
-
 </body>
 
 </html>

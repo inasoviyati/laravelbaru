@@ -10,7 +10,7 @@
 
         <div class="form-group mb-3 col-md-4">
             <label for="npm">NPM</label>
-            <input type="text" id="npm" name="npm" class="form-control" value="{{ old('npm') }}" maxlength="8" minlength="8" required>
+            <input type="text" data-mask="00000000" id="npm" name="npm" class="form-control" value="{{ old('npm') }}" maxlength="8" minlength="8" required>
             @error('npm')
                 <div class="text-danger small">{{ $message }}</div>
             @enderror
