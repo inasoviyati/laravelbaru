@@ -28,7 +28,7 @@
 
     <div class="form-group mb-3 col-md-5">
         <label for="email">Email</label>
-        <input type="email" class="form-control" value="{{ $student->email }}" required disabled>
+        <input type="text" class="form-control" value="{{ $student->email }}" required disabled>
     </div>
 
     <div class="form-row">

@@ -10,7 +10,7 @@
         
         <div class="form-group mb-3 col-md-6">
             <label for="alias">Nama</label>
-            <input type="text" id="name" name="name" class="form-control" value="{{ $facility->name }}">
+            <input type="text" id="name" name="name" class="form-control" value="{{ $facility->name }}" required>
             @error('name')
                 <div class="text-danger small">{{ $message }}</div>
             @enderror
@@ -18,7 +18,7 @@
 
         <div class="form-group mb-3 col-md-6">
             <label for="description">Deskripsi</label>
-            <input type="text" id="description" name="description" class="form-control" value="{{ $facility->description }}">
+            <input type="text" id="description" name="description" class="form-control" value="{{ $facility->description }}" required>
             @error('description')
                 <div class="text-danger small">{{ $message }}</div>
             @enderror

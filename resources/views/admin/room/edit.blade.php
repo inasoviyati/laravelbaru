@@ -10,7 +10,7 @@
         
         <div class="form-group mb-3 col-md-6">
             <label for="name">Nama</label>
-            <input type="text" id="name" name="name" class="form-control" value="{{ $room->name }}">
+            <input type="text" id="name" name="name" class="form-control" value="{{ $room->name }}" required>
         </div>
 
         <div class="d-flex justify-content-between">

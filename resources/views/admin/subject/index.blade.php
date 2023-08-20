@@ -13,7 +13,6 @@
     <table id="dataTable" class="display nowrap" width="100%">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nama</th>
                 <th>Alias</th>
                 <th width="1%">Aksi</th>
@@ -22,7 +21,6 @@
         <tbody>
             @foreach ($rooms as $subject)
                 <tr>
-                    <td>{{ $subject->id }}</td>
                     <td>{{ $subject->name }}</td>
                     <td>{{ $subject->alias }}</td>
                     <td class="text-end">

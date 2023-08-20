@@ -38,7 +38,7 @@
 
         <div class="form-group mb-3 col-md-5">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" minlength="8" maxlength="100" required>
+            <input type="text" id="email" name="email" class="form-control" value="{{ old('email') }}" minlength="8" maxlength="100" required>
             @error('email')
                 <div class="text-danger small">{{ $message }}</div>
             @enderror

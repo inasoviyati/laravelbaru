@@ -13,7 +13,6 @@
     <table id="dataTable" class="display nowrap" width="100%">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nama</th>
                 <th>Jumlah</th>
                 <th width="1%">Aksi</th>
@@ -22,7 +21,6 @@
         <tbody>
             @foreach ($rooms as $room)
                 <tr>
-                    <td>{{ $room->id }}</td>
                     <td>{{ $room->name }}</td>
                     <td>
                         <a href="{{ route('room.show', ['room' => $room->id]) }}">{{ $room->roomUsers->count() }} orang</a>
@@ -48,12 +46,12 @@
             $('#dataTable').DataTable({
                 responsive: true,
                 columnDefs: [{
-                    targets: 3,
+                    targets: 2,
                     orderable: false,
                     searchable: false
                 }],
                 pageLength: 50,
-                order: [1, 'asc']
+                order: [0, 'asc']
             });
         });
     </script>
