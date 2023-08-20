@@ -9,7 +9,7 @@
 <body data-theme="light">
     <div class="d-flex h-100 w-100 bg-white position-absolute" style="z-index: 1100;" id="loadingSpinner">
         <div class="m-auto">
-            <div class="spinner-border text-warning" style="background-image: url('assets/img/icons/icon-48x48.png'); background-size: contain; width: 48px; height: 48px; border: unset;"></div>
+            <div class="spinner-border text-warning" style="background-image: url('{{ asset('img/icons/icon-48x48.png') }}'); background-size: contain; width: 48px; height: 48px; border: unset;"></div>
         </div>
     </div>
     <div class="wrapper">
@@ -86,6 +86,7 @@
     <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('js/responsive.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/project.js') }}"></script>
     @stack('js')
