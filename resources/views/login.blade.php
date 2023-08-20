@@ -40,12 +40,12 @@
                                     <form action="{{ route('login.auth') }}" method="POST" autocomplete="off">
                                         @csrf
                                         <div class="mb-3">
-                                            <label class="form-label">Email</label>
-                                            <input class="form-control form-control-lg" type="text" name="email" placeholder="Masukkan email" required />
+                                            <label class="form-label">Alamat surel</label>
+                                            <input class="form-control form-control-lg" type="text" name="email" placeholder="Masukkan alamat surel" required />
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Password</label>
-                                            <input class="form-control form-control-lg" type="password" name="password" placeholder="Masukkan password" value="password" required />
+                                            <label class="form-label">Kata sandi</label>
+                                            <input class="form-control form-control-lg" type="password" name="password" placeholder="Masukkan kata sandi" value="password" required />
                                         </div>
                                         <div>
                                             <div class="form-check align-items-center">

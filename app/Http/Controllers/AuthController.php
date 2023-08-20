@@ -29,7 +29,7 @@ class AuthController extends Controller
         ], [
             'email.required' => 'alamat surel harus diisi.',
             'email.email' => 'alamat surel tidak valid.',
-            'password' => 'alamat surel tidak valid.',
+            'password' => 'kata sandi harus diisi.',
         ]);
 
         if (Auth::attempt($credentials, $request->remember)) {
@@ -39,7 +39,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'email / password tidak cocok.',
+            'email' => 'alamat surel / kata sandi tidak cocok.',
         ]);
     }
 

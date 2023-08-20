@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group mb-3 col-md-5">
-        <label for="email">Email</label>
+        <label for="email">Alamat surel</label>
         <input type="text" class="form-control" value="{{ $student->email }}" required disabled>
     </div>
 

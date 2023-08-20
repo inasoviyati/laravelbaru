@@ -39,15 +39,15 @@
         </div>
 
         <div class="form-group mb-3 col-md-5">
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" class="form-control" value="{{ $student->email }}" minlength="8" maxlength="100" required>
+            <label for="email">Alamat surel</label>
+            <input type="text" id="email" name="email" class="form-control" value="{{ $student->email }}" required>
             @error('email')
                 <div class="text-danger small">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group mb-3 col-md-4">
-            <label for="password">Password</label>
+            <label for="password">Kata sandi</label>
             <input type="password" id="password" name="password" minlength="8" maxlength="50" class="form-control">
             @error('password')
                 <div class="text-danger small">{{ $message }}</div>

@@ -9,7 +9,7 @@
             <tr>
                 <th>NPM</th>
                 <th>Nama</th>
-                <th>Email</th>
+                <th>Alamat surel</th>
                 <th>Kelas</th>
                 <th width="1%">Aksi</th>
             </tr>
