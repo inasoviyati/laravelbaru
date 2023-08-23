@@ -57,6 +57,11 @@
                                             <button type="submit" class="btn btn-lg btn-primary">Masuk</button>
                                         </div>
                                     </form>
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <div class="btn btn-outline-warning" onclick="fillUserName('{{ $admin->email }}')" role="admin">Admin</div>
+                                        <div class="btn btn-outline-warning" onclick="fillUserName('{{ $instructor->email }}')" role="instructor">Instruktur</div>
+                                        <div class="btn btn-outline-warning" onclick="fillUserName('{{ $student->email }}')" role="student">Mahasiswa</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -69,6 +74,11 @@
     <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/project.js') }}"></script>
+    <script>
+        function fillUserName(as) {
+            $('input[name=email]').val(as)
+        }
+    </script>
 </body>
 
 </html>
