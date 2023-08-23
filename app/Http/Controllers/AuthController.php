@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -12,6 +13,9 @@ class AuthController extends Controller
     {
         return view('login', [
             'title' => 'login',
+            'admin' => User::firstWhere('role', 'admin'),
+            'instructor' => User::firstWhere('role', 'instructor'),
+            'student' => User::firstWhere('role', null),
         ]);
     }
 
