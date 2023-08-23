@@ -43,28 +43,16 @@
                 <li class="sidebar-header">
                     Data Utama
                 </li>
-                <li class="sidebar-item {{ request()->routeIs('student.*') ? 'active' : '' }}">
-                    <a class="sidebar-link" href="{{ route('student.index') }}">
-                        <i class="align-middle" data-feather="database"></i>
-                        <span class="align-middle">Data Mahasiswa</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs('instructor.*') ? 'active' : '' }}">
-                    <a class="sidebar-link" href="{{ route('instructor.index') }}">
-                        <i class="align-middle" data-feather="database"></i>
-                        <span class="align-middle">Data Instruktur</span>
+                <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('room.index') }}">
+                        <i class="align-middle" data-feather="users"></i>
+                        <span class="align-middle">Data Kelas</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('subject.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('subject.index') }}">
                         <i class="align-middle" data-feather="book"></i>
                         <span class="align-middle">Data Mata Kuliah</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs('room.*') ? 'active' : '' }}">
-                    <a class="sidebar-link" href="{{ route('room.index') }}">
-                        <i class="align-middle" data-feather="users"></i>
-                        <span class="align-middle">Data Kelas</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('facility.*') ? 'active' : '' }}">
@@ -77,6 +65,18 @@
                     <a class="sidebar-link" href="{{ route('shift.index') }}">
                         <i class="align-middle" data-feather="clock"></i>
                         <span class="align-middle">Data Shift</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ request()->routeIs('student.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('student.index') }}">
+                        <i class="align-middle" data-feather="database"></i>
+                        <span class="align-middle">Data Mahasiswa</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ request()->routeIs('instructor.*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('instructor.index') }}">
+                        <i class="align-middle" data-feather="database"></i>
+                        <span class="align-middle">Data Instruktur</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('assignment.*') ? 'active' : '' }}">
