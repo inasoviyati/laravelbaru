@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignmentStudent;
 use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
 {
@@ -83,5 +85,13 @@ class RoomController extends Controller
                 'color' => $colorAlert ?? 'success',
                 'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " dihapus",
             ]);
+    }
+
+    public function assigned() {
+        return view('student.room.index', [
+            'title' => 'Ruang Kelas',
+            'rooms' => AssignmentStudent::where('student_id', Auth::user()->id)->get(),
+        ]);
+
     }
 }

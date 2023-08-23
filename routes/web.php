@@ -36,6 +36,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::redirect('/', 'dashboard')->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('rooms', [RoomController::class, 'assigned'])->name('room.assigned');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('assignment', [AssignmentController::class, 'index'])->name('assignment.index');
     Route::resource('shift/{shift}/day/{day}/assignment', AssignmentController::class, ['names' => 'assignment'])->except('index', 'show')->where(['day' => '[1-7]']);

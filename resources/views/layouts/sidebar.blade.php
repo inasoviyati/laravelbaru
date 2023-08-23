@@ -134,7 +134,7 @@
                     Mahasiswa
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
+                    <a class="sidebar-link" href="{{ route('room.assigned') }}">
                         <i class="align-middle" data-feather="users"></i>
                         <span class="align-middle">Ruang Kelas</span>
                     </a>

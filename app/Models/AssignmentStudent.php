@@ -26,6 +26,16 @@ class AssignmentStudent extends Model
         return $this->belongsTo(User::class, 'student_id', 'id');
     }
 
+    /**
+     * Get the assignment that owns the AssignmentStudent
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function assignment(): BelongsTo
+    {
+        return $this->belongsTo(Assignment::class);
+    }
+
     public function roomStudent(): HasOneThrough
     {
         return $this->hasOneThrough(RoomUser::class, User::class, 'id', 'student_id', 'student_id', 'id');
