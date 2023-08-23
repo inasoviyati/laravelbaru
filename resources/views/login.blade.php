@@ -77,6 +77,7 @@
     <script>
         function fillUserName(as) {
             $('input[name=email]').val(as)
+            checkFormStatus()
         }
     </script>
 </body>
