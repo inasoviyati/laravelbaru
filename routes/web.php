@@ -37,9 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::redirect('/', 'dashboard')->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('rooms', [RoomController::class, 'assigned'])->name('room.assigned');
+    Route::get('rooms/{room}', [RoomController::class, 'assignedDetail'])->name('room.assigned.detail');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('assignment', [AssignmentController::class, 'index'])->name('assignment.index');
-    Route::resource('shift/{shift}/day/{day}/assignment', AssignmentController::class, ['names' => 'assignment'])->except('index', 'show')->where(['day' => '[1-7]']);
+    Route::get('assignment/{facility?}', [AssignmentController::class, 'index'])->name('assignment.index');
+    Route::resource('facility/{facility}/shift/{shift}/day/{day}/assignment', AssignmentController::class, ['names' => 'assignment'])->except('index', 'show')->where(['day' => '[1-7]']);
     Route::resource('assignment/{assignment}/assignmentStudent', AssignmentStudentController::class, ['names' => 'assignmentStudent'])->only('store', 'show', 'destroy');
     Route::resources([
         'student' => StudentController::class,

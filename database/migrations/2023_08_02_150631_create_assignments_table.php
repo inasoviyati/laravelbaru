@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects')->cascadeOnDelete();
             $table->unsignedBigInteger('shift_id');
             $table->foreign('shift_id')->references('id')->on('shifts')->cascadeOnDelete();
+            $table->unsignedBigInteger('facility_id');
+            $table->foreign('facility_id')->references('id')->on('facilities')->cascadeOnDelete();
             $table->tinyInteger('day');
         });
 

@@ -5,7 +5,7 @@
 
 @push('action')
     <div class="text-end">
-        <form action="{{ route('assignment.destroy', ['assignment' => $assignment->id, 'shift' => $shift, 'day' => $day]) }}" method="POST">
+        <form action="{{ route('assignment.destroy', ['facility' => $facility->id, 'assignment' => $assignment->id, 'shift' => $shift, 'day' => $day]) }}" method="POST">
             @csrf
             @method('delete')
             <button type="submit" class="btn btn-danger">Hapus</button>
@@ -14,11 +14,19 @@
 @endpush
 
 @section('content')
-    <form method="post" action="{{ route('assignment.update', ['shift' => $shift, 'day' => $day, 'assignment' => $assignment->id]) }}" class="row" autocomplete="off">
+    <form method="post" action="{{ route('assignment.update', ['shift' => $shift, 'day' => $day, 'assignment' => $assignment->id, 'facility' => $facility->id]) }}" class="row" autocomplete="off">
         @csrf
         @method('PUT')
 
-        <div class="form-group mb-3 col-md-4">
+        <div class="form-group mb-3 col-md-3">
+            <label for="facility">Fasilitas</label>
+            <input type="text" readonly class="form-control-plaintext fw-bold" id="facility" value="{{ $facility->name }}">
+            @error('facility')
+                <div class="text-danger small">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group mb-3 col-md-3">
             <label for="day">Hari</label>
             <input type="text" readonly class="form-control-plaintext fw-bold" id="day" value="{{ $dayName }}">
             @error('day')
@@ -26,7 +34,7 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3 col-md-4">
+        <div class="form-group mb-3 col-md-3">
             <label for="shift">Shift</label>
             <input type="text" readonly class="form-control-plaintext fw-bold" id="shift" value="{{ $shift->name }}">
             @error('shift')
@@ -34,7 +42,7 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3 col-md-4">
+        <div class="form-group mb-3 col-md-3">
             <label for="shift">Waktu</label>
             <input type="text" readonly class="form-control-plaintext fw-bold" id="shift" value="{{ $shift->timeFormated('time_start') . ' - ' . $shift->timeFormated('time_end') }}">
         </div>
@@ -64,7 +72,7 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <a href="{{ route('assignment.index') }}" class="btn btn-light">Kembali</a>
+            <a href="{{ route('assignment.index', $facility->id) }}" class="btn btn-light">Kembali</a>
             <button type="submit" class="btn btn-warning">Ubah</button>
         </div>
     </form>
@@ -122,7 +130,7 @@
 @endsection
 
 @section('others')
-    <div class="content pt-0">
+    <div class="pt-0">
         <div class="container-fluid p-0">
             <div class="row">
                 <div class="col-12">
@@ -154,7 +162,7 @@
                                             <td>{{ $assignmentStudent->user->name }}</td>
                                             <td>{{ $assignmentStudent->roomStudent->room->name }}</td>
                                             <td>
-                                                <form action="{{ route('assignmentStudent.destroy', ['assignment' => $assignment->id, 'assignmentStudent' => $assignmentStudent->id]) }}" method="POST">
+                                                <form action="{{ route('assignmentStudent.destroy', ['facility' => $facility->id, 'assignment' => $assignment->id, 'assignmentStudent' => $assignmentStudent->id]) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <button class="btn btn-danger" name="" type="submit">Hapus</button>

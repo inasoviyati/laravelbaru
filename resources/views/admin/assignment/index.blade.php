@@ -22,6 +22,14 @@
         }
     </style>
 @endpush
+
+@push('action')
+    <select class="form-select w-auto" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+        @foreach ($facilities as $fac)            
+        <option value="{{ route('assignment.index', $fac->id) }}" {{ $fac->id == $facility->id ? 'selected' : '' }}>{{ $fac->name }}</option>
+        @endforeach
+    </select>
+@endpush
 @section('content')
     <div class="overflow-scroll">
         <table class="table table-striped display nowrap border" width="100%">
@@ -51,12 +59,12 @@
                                         ->first();
                                 @endphp
                                 @if ($assignment)
-                                    <a href="{{ route('assignment.edit', ['shift' => $shift->id, 'day' => $i, 'assignment' => $assignment->id]) }}" class="link-overlay"></a>
+                                    <a href="{{ route('assignment.edit', ['shift' => $shift->id, 'day' => $i, 'assignment' => $assignment->id, 'facility' => $facility->id]) }}" class="link-overlay"></a>
                                     <div class="fw-bold">{{ $assignment->subject->alias }}</div>
                                     <div>{{ Str::words($assignment->instructor->name, 2, '...') }}</div>
                                     <div class="text-muted">{{ $assignment->assignmentStudents->count() }} orang</div>
                                 @else
-                                    <a href="{{ route('assignment.create', ['shift' => $shift->id, 'day' => $i]) }}" class="link-overlay"></a>
+                                    <a href="{{ route('assignment.create', ['shift' => $shift->id, 'day' => $i, 'facility' => $facility->id]) }}" class="link-overlay"></a>
                                 @endif
                             </td>
                         @endfor

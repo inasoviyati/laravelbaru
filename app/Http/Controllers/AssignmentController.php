@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\AssignmentStudent;
+use App\Models\Facility;
 use App\Models\Room;
 use App\Models\Shift;
 use App\Models\Subject;
@@ -17,16 +18,24 @@ class AssignmentController extends Controller
 
     protected $title = 'Penugasan';
 
-    public function index()
+    public function index($facility = null)
     {
+        $facility = Facility::find($facility);
+
+        if (!$facility) {
+            $facility = Facility::firstOrFail();
+        }
+
         return view('admin.assignment.index', [
             'title' => $this->title,
-            'assignments' => Assignment::with('subject','assignmentStudents')->get(),
+            'assignments' => Assignment::with('subject', 'assignmentStudents')->where('facility_id', $facility->id)->get(),
             'shifts' => Shift::orderBy('time_start')->get(),
+            'facility' => $facility,
+            'facilities' => Facility::get(),
         ]);
     }
 
-    public function create(Shift $shift, $day)
+    public function create(Facility $facility, Shift $shift, $day)
     {
         $excludeInstructors = Assignment::where('shift_id', $shift->id)->pluck('instructor_id');
 
@@ -37,17 +46,20 @@ class AssignmentController extends Controller
             'dayName' => $this->numberToDayName($day),
             'subjects' => Subject::orderBy('name')->get(),
             'instructors' => User::where('role', 'instructor')->whereNotIn('id', $excludeInstructors)->orderBy('name')->get(),
+            'facility' => $facility
         ]);
     }
 
-    public function store(Request $request, Shift $shift, $day)
+    public function store(Request $request,Facility $facility, Shift $shift, $day)
     {
         $request->merge([
             'shift' => $shift->id,
             'day' => $day,
+            'facility' => $facility->id,
         ]);
 
         $request->validate([
+            'facility' => 'required|exists:facilities,id',
             'instructor' => 'required|exists:users,id',
             'subject' => 'required|exists:subjects,id',
             'shift' => 'required|exists:shifts,id',
@@ -57,18 +69,19 @@ class AssignmentController extends Controller
         $assignment = Assignment::create([
             'instructor_id' => $request->instructor,
             'subject_id' => $request->subject,
+            'facility_id' => $facility->id,
             'shift_id' => $shift->id,
             'day' => $day,
         ]);
 
-        return redirect()->route('assignment.edit', ['shift' => $shift->id, 'day' => $day, 'assignment' => $assignment->id])
+        return redirect()->route('assignment.edit', ['facility' => $facility, 'shift' => $shift->id, 'day' => $day, 'assignment' => $assignment->id])
             ->with([
                 'color' => $colorAlert ?? 'success',
                 'status' => "{$this->title} " . ($statusAlert ?? 'berhasil') . " ditambahkan",
             ]);
     }
 
-    public function edit(Shift $shift, $day, Assignment $assignment, Request $request)
+    public function edit(Facility $facility, Shift $shift, $day, Assignment $assignment, Request $request)
     {
         $excludeInstructors = Assignment::where('shift_id', $shift->id)->where('instructor_id', '!=', $assignment->instructor_id)->pluck('instructor_id');
         $assignmentStundents = AssignmentStudent::where('assignment_id', $assignment->id)->get();
@@ -77,6 +90,7 @@ class AssignmentController extends Controller
             'title' => $this->title,
             'shift' => $shift,
             'day' => $day,
+            'facility' => $facility,
             'assignment' => $assignment,
             'dayName' => $this->numberToDayName($day),
             'rooms' => Room::orderBy('name')->get(),
@@ -87,7 +101,7 @@ class AssignmentController extends Controller
         ]);
     }
 
-    public function update(Request $request, Shift $shift, $day, Assignment $assignment)
+    public function update(Request $request, Facility $facility, Shift $shift, $day, Assignment $assignment)
     {
         $request->merge([
             'shift' => $shift->id,
@@ -115,7 +129,7 @@ class AssignmentController extends Controller
             ]);
     }
 
-    public function destroy(Shift $shift, $day, Assignment $assignment)
+    public function destroy(Facility $facility, Shift $shift, $day, Assignment $assignment)
     {
         $assignment->delete();
 

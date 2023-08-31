@@ -28,7 +28,8 @@ class AssignmentStudentController extends Controller
         return redirect()->route('assignment.edit', [
             'shift' => $assignment->shift_id,
             'day' => $assignment->day,
-            'assignment' => $assignment->id
+            'assignment' => $assignment->id,
+            'facility' => $assignment->facility_id
         ])
             ->with([
                 'color' => $colorAlert ?? 'success',

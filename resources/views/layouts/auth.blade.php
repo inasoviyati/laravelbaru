@@ -6,8 +6,8 @@
     @stack('css')
 </head>
 
-<body data-theme="light">
-    <div class="d-flex h-100 w-100 bg-white position-absolute" style="z-index: 1100;" id="loadingSpinner">
+<body data-theme="light" class="overflow-hidden">
+    <div class="d-flex h-100 w-100 bg-white position-fixed" style="z-index: 1100;" id="loadingSpinner">
         <div class="m-auto">
             <div class="spinner-border text-warning" style="background-image: url('{{ asset('img/icons/icon-48x48.png') }}'); background-size: contain; width: 48px; height: 48px; border: unset;"></div>
         </div>
@@ -55,27 +55,30 @@
                     </div>
                 @endif
 
-                <div class="container-fluid p-0">
-                    <h1 class="h3 mb-3">@stack('title')</h1>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="card-title my-auto">@stack('header', '')</div>
-                                        @stack('action')
+                @hasSection('content')
+                    <div class="container-fluid p-0">
+                        <h1 class="h3 mb-3">@stack('title')</h1>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="card-title my-auto">@stack('header', '')</div>
+                                            @stack('action')
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    @yield('content')
+                                    <div class="card-body">
+                                        @yield('content')
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
+
+                @yield('others')
             </main>
 
-            @yield('others')
 
             @include('layouts.footer')
 

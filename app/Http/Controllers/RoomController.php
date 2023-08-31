@@ -92,6 +92,12 @@ class RoomController extends Controller
             'title' => 'Ruang Kelas',
             'rooms' => AssignmentStudent::where('student_id', Auth::user()->id)->get(),
         ]);
+    }
 
+    public function assignedDetail(AssignmentStudent $room) {
+        return view('student.room.show', [
+            'title' => $room->assignment->subject->name,
+            'rooms' => AssignmentStudent::where('student_id', Auth::user()->id)->get(),
+        ]);        
     }
 }
