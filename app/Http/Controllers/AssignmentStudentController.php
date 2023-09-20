@@ -11,6 +11,22 @@ class AssignmentStudentController extends Controller
 {
     protected $title = 'Daftar Mahasiswa';
 
+    public function index(AssignmentStudent $assignment_students)
+    {
+        $collection = [
+            ['icon' => 'calendar', 'title' => 'Jadwal', 'slug' => 'calendar', 'image' => 357],
+            ['icon' => 'clipboard', 'title' => 'Tugas', 'slug' => 'modules', 'image' => 4],
+            ['icon' => 'edit', 'title' => 'Nilai', 'slug' => 'score', 'image' => 7],
+            ['icon' => 'book', 'title' => 'BAP', 'slug' => 'bap', 'image' => 24],
+        ];
+
+        return view('instructor.menu.index', [
+            'title' => 'Menu',
+            'assignment_students' => $assignment_students,
+            'collection' => $collection,
+        ]);
+    }
+
     public function store(Request $request, Assignment $assignment)
     {
         try {

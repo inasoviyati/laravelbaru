@@ -91,42 +91,17 @@
                 <li class="sidebar-header">
                     Instruktur
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="clipboard"></i>
-                        <span class="align-middle">Absen Instruktur</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="clipboard"></i>
-                        <span class="align-middle">Absen Mahasiswa</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="book"></i>
-                        <span class="align-middle">Nilai</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="book"></i>
-                        <span class="align-middle">BAP</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="clipboard"></i>
-                        <span class="align-middle">Tugas</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="#">
-                        <i class="align-middle" data-feather="calendar"></i>
-                        <span class="align-middle">Jadwal</span>
-                    </a>
-                </li>
+                @php
+                    $instructors = \App\Models\Assignment::where('instructor_id', auth()->user()->id)->get();
+                @endphp
+                @foreach ($instructors as $instructor)
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ route('instructor.class', ['assignment_students' => $instructor->id]) }}">
+                            <i class="align-middle" data-feather="book"></i>
+                            <span class="align-middle">{{ $instructor->subject->alias }}</span>
+                        </a>
+                    </li>
+                @endforeach
             @endif
 
             @if (auth()->user()->role != 'admin')

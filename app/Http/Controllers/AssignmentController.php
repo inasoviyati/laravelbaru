@@ -37,7 +37,7 @@ class AssignmentController extends Controller
 
     public function create(Facility $facility, Shift $shift, $day)
     {
-        $excludeInstructors = Assignment::where('shift_id', $shift->id)->pluck('instructor_id');
+        $excludeInstructors = Assignment::where('shift_id', $shift->id)->where('day', $day)->pluck('instructor_id');
 
         return view('admin.assignment.create', [
             'title' => $this->title,
@@ -83,7 +83,7 @@ class AssignmentController extends Controller
 
     public function edit(Facility $facility, Shift $shift, $day, Assignment $assignment, Request $request)
     {
-        $excludeInstructors = Assignment::where('shift_id', $shift->id)->where('instructor_id', '!=', $assignment->instructor_id)->pluck('instructor_id');
+        $excludeInstructors = Assignment::where('shift_id', $shift->id)->where('day', $day)->pluck('instructor_id');
         $assignmentStundents = AssignmentStudent::where('assignment_id', $assignment->id)->get();
 
         return view('admin.assignment.edit', [

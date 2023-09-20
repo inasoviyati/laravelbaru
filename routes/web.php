@@ -36,6 +36,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::redirect('/', 'dashboard')->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('assignment_students/{assignment_students}/{slug?}', [AssignmentStudentController::class, 'index'])->name('instructor.class');
     Route::get('rooms', [RoomController::class, 'assigned'])->name('room.assigned');
     Route::get('rooms/{room}', [RoomController::class, 'assignedDetail'])->name('room.assigned.detail');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

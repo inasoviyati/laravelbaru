@@ -12,9 +12,10 @@
             @foreach ($rooms as $room)
                 <div class="col-md-6">
                     <a href="{{ route('room.assigned.detail', ['room' => $room->id]) }}" class="text-decoration-none">
-                        <div class="d-flex align-items-center bg-white px-2">
-                            <div class="flex-shrink-0">
-                                <img class="img-fluid rounded" src="https://dummyimage.com/100x100/000000/fff&text={{ $room->assignment->subject->alias }}" alt="...">
+                        <div class="d-flex align-items-center bg-white px-2 mb-4 shadow">
+                            <div class="flex-shrink-0 bg-success ms-1 rounded-5">
+                                <i class="m-4 text-white" data-feather="smile"></i>
+                                {{-- <img class="img-fluid rounded-start-5" src="https://dummyimage.com/100x96/555555/fff&text= {{ $room->assignment->subject->alias }} " alt="..."> --}}
                             </div>
                             <div class="flex-grow-1">
                                 <div class="p-3">
