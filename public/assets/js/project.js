@@ -1,4 +1,4 @@
-const req = $('input[required], select[required]')
+const req = $('input[required], select[required], textarea[required]')
 const form = $('form')
 
 if (req.length) {

@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\InstructorAttendanceController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScoreController;
@@ -36,7 +37,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::redirect('/', 'dashboard')->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('assignment_students/{assignment_students}/{slug?}', [AssignmentStudentController::class, 'index'])->name('instructor.class');
+    Route::resource('assignment_students/{assignment_students}/{slug?}/instructor', ModuleController::class, ['names' => 'instructor.class']);
     Route::get('rooms', [RoomController::class, 'assigned'])->name('room.assigned');
     Route::get('rooms/{room}', [RoomController::class, 'assignedDetail'])->name('room.assigned.detail');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

@@ -1,7 +1,8 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="{{ route('dashboard.index') }}">
-            <img src="{{ asset('img/logo/logo.png') }}" class="img-fluid" style="padding-left: 40px;padding-right: 40px;" alt="">
+            <img src="{{ asset('img/logo/logo.png') }}" class="img-fluid" style="padding-left: 40px;padding-right: 40px;"
+                alt="">
         </a>
 
         <ul class="sidebar-nav">
@@ -96,7 +97,8 @@
                 @endphp
                 @foreach ($instructors as $instructor)
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('instructor.class', ['assignment_students' => $instructor->id]) }}">
+                        <a class="sidebar-link"
+                            href="{{ route('instructor.class.index', ['assignment_students' => $instructor->id, 'slug' => 'index']) }}">
                             <i class="align-middle" data-feather="book"></i>
                             <span class="align-middle">{{ $instructor->subject->alias }}</span>
                         </a>

@@ -6,7 +6,7 @@
 
             @foreach ($collection as $item)
                 <div class="col-sm-6 col-xl-3">
-                    <a href="{{ route('instructor.class', ['assignment_students' => $assignment_students->id, 'slug' => $item['slug']]) }}" class="text-decoration-none">
+                    <a href="{{ route('instructor.class.index', ['assignment_students' => $assignment_students->id, 'slug' => $item['slug']]) }}" class="text-decoration-none">
                         <div class="card" style="background-color:black">
                             <img class="card-img-top" src="https://picsum.photos/id/{{ $item['image'] }}/400/200.jpg" alt="Card image" style="opacity: 0.15;">
                             <div class="card-img-overlay">

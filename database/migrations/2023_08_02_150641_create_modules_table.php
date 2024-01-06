@@ -16,13 +16,11 @@ return new class extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('meet_id');
-            $table->foreign('meet_id')->references('id')->on('meets')->cascadeOnDelete();
-            $table->string('title');
             $table->longText('content');
-            $table->longText('report_initial')->nullable()->default(null);
-            $table->longText('report_final')->nullable()->default(null);
             $table->dateTime('created_at')->nullable()->default(null);
             $table->dateTime('updated_at')->nullable()->default(null);
+
+            $table->foreign('meet_id')->references('id')->on('meets')->cascadeOnDelete();
         });
 
         Schema::enableForeignKeyConstraints();
@@ -38,6 +36,5 @@ return new class extends Migration
         Schema::dropIfExists('modules');
 
         Schema::enableForeignKeyConstraints();
-
     }
 };
