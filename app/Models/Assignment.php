@@ -54,4 +54,19 @@ class Assignment extends Model
     {
         return $this->hasMany(AssignmentStudent::class);
     }
+
+    /**
+     * Get all of the meets for the Assignment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function meets(): HasMany
+    {
+        return $this->hasMany(Meet::class);
+    }
+
+    public function meetsOrderByDate(): HasMany
+    {
+        return $this->meets()->orderBy('date');
+    }
 }

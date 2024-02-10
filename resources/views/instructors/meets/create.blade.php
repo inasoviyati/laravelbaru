@@ -5,21 +5,11 @@
         <div class="d-flex justify-content-between">
             <div class="h2">{{ $title }}</div>
         </div>
-        <form
-            action="{{ route('instructor.class.store', ['assignment_students' => $assignment_students->id, 'slug' => 'modules']) }}"
-            class="mt-4 card bg-white p-4" autocomplete="off" method="POST">
+        <form action="{{ route('instructors.assignments.meets.store', $assignment->id) }}" class="mt-4 card bg-white p-4" autocomplete="off" method="POST">
             @csrf
             <div class="row">
                 <div class="form-row mb-3">
                     <div class="row">
-                        <div class="form-group col-6">
-                            <label>Pertemuan</label>
-                            <select name="number" class="form-select" required>
-                                @for ($i = 1; $i <= 10; $i++)
-                                    <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor
-                            </select>
-                        </div>
                         <div class="form-group col-6">
                             <label>Tanggal</label>
                             <input type="text" name="date" class="form-control" required>
@@ -35,8 +25,7 @@
                     <input type="file" name="attachment" class="form-control form-control-lg">
                 </div>
                 <div class="d-flex justify-content-between">
-                    <a class="btn btn-lg btn-light"
-                        href="{{ route('instructor.class.index', ['assignment_students' => $assignment_students->id, 'slug' => 'modules']) }}">Kembali</a>
+                    <a class="btn btn-lg btn-light" href="{{ route('instructors.assignments.meets.index', $assignment->id) }}">Kembali</a>
                     <button class="btn btn-lg btn-primary">Tambah</button>
                 </div>
             </div>

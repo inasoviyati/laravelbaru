@@ -98,7 +98,7 @@
                 @foreach ($instructors as $instructor)
                     <li class="sidebar-item">
                         <a class="sidebar-link"
-                            href="{{ route('instructor.class.index', ['assignment_students' => $instructor->id, 'slug' => 'index']) }}">
+                            href="{{ route('instructors.assignments.meets.index', $instructor->id) }}">
                             <i class="align-middle" data-feather="book"></i>
                             <span class="align-middle">{{ $instructor->subject->alias }}</span>
                         </a>
