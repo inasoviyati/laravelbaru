@@ -60,7 +60,7 @@ class InstructorMeetController extends Controller
      * @param  \App\Models\Meet  $meet
      * @return \Illuminate\Http\Response
      */
-    public function show(Meet $meet)
+    public function show(Assignment $assignment, Meet $meet)
     {
         //
     }
