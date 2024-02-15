@@ -15,7 +15,7 @@ class InstructorMeetController extends Controller
      */
     public function index(Assignment $assignment)
     {
-        return view('instructors.meets.show', [
+        return view('instructors.meets.index', [
             'title' => 'Daftar Pertemuan',
             'meets' => $assignment->meetsOrderByDate,
             'assignment' => $assignment,
@@ -47,9 +47,19 @@ class InstructorMeetController extends Controller
             'date' => $request->date
         ]);
 
-        $meet->modules()->create([
+        $module = $meet->modules()->create([
             'content' => $request->content
         ]);
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+
+            $path = $file->storeAs('uploads', $filename, 'public');
+            $module->moduleAttachments()->create([
+                'file_path' => $path
+            ]);
+        }
 
         return redirect()->route('instructors.assignments.meets.index', $assignment->id);
     }
@@ -62,7 +72,12 @@ class InstructorMeetController extends Controller
      */
     public function show(Assignment $assignment, Meet $meet)
     {
-        //
+        return view('instructors.meets.show', [
+            'title' => null,
+            'assignment' => $assignment,
+            'meet' => $meet,
+            'module' => $meet->modules()->where('meet_id', $meet->id)->first(),
+        ]);
     }
 
     /**
@@ -83,9 +98,27 @@ class InstructorMeetController extends Controller
      * @param  \App\Models\Meet  $meet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Meet $meet)
+    public function update(Request $request, Assignment $assignment, Meet $meet)
     {
-        //
+        $meet->update([
+            'date' => $request->date
+        ]);
+
+        $meet->modules()->update([
+            'content' => $request->content
+        ]);
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+
+            $path = $file->storeAs('uploads', $filename, 'public');
+            $meet->modules()->moduleAttachments()->create([
+                'file_path' => $path
+            ]);
+        }
+
+        return redirect()->route('instructors.assignments.meets.index', $assignment->id);
     }
 
     /**
@@ -94,8 +127,10 @@ class InstructorMeetController extends Controller
      * @param  \App\Models\Meet  $meet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Meet $meet)
+    public function destroy(Assignment $assignment, Meet $meet)
     {
-        //
+        $meet->delete();
+
+        return redirect()->route('instructors.assignments.meets.index', $assignment->id);
     }
 }

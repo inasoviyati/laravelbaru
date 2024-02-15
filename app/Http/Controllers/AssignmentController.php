@@ -10,6 +10,7 @@ use App\Models\Shift;
 use App\Models\Subject;
 use App\Models\User;
 use App\Services\HasDate;
+use DateTime;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
@@ -50,7 +51,7 @@ class AssignmentController extends Controller
         ]);
     }
 
-    public function store(Request $request,Facility $facility, Shift $shift, $day)
+    public function store(Request $request, Facility $facility, Shift $shift, $day)
     {
         $request->merge([
             'shift' => $shift->id,
@@ -73,6 +74,31 @@ class AssignmentController extends Controller
             'shift_id' => $shift->id,
             'day' => $day,
         ]);
+
+        $today = new DateTime();
+        $dayNumber = $day;
+
+        $daysOfWeek = [
+            1 => 'Monday',
+            2 => 'Tuesday',
+            3 => 'Wednesday',
+            4 => 'Thursday',
+            5 => 'Friday',
+            6 => 'Saturday',
+            7 => 'Sunday'
+        ];
+
+        if ($today->format('N') != $dayNumber) {
+            $today->modify('next ' . $daysOfWeek[$dayNumber]);
+        }
+
+        for ($i = 0; $i < 10; $i++) {
+            $assignment->meets()->create([
+                'date' => $today->format('Y-m-d')
+            ]);
+
+            $today->modify('+1 week');
+        }
 
         return redirect()->route('assignment.edit', ['facility' => $facility, 'shift' => $shift->id, 'day' => $day, 'assignment' => $assignment->id])
             ->with([

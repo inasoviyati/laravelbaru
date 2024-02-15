@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between">
             <div class="h2">{{ $title }}</div>
         </div>
-        <form action="{{ route('instructors.assignments.meets.store', $assignment->id) }}" class="mt-4 card bg-white p-4" autocomplete="off" method="POST">
+        <form action="{{ route('instructors.assignments.meets.store', $assignment->id) }}" class="mt-4 card bg-white p-4" autocomplete="off" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="form-row mb-3">

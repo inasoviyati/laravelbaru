@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ModuleAttachment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Module extends Model
 {
@@ -15,5 +17,10 @@ class Module extends Model
     public function meet(): BelongsTo
     {
         return $this->belongsTo(Meet::class);
+    }
+
+    public function moduleAttachments(): HasMany
+    {
+        return $this->hasMany(ModuleAttachment::class);
     }
 }
