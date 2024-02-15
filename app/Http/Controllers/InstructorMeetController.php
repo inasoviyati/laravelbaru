@@ -104,7 +104,7 @@ class InstructorMeetController extends Controller
             'date' => $request->date
         ]);
 
-        $meet->modules()->update([
+        $meet->modules()->updateOrCreate([
             'content' => $request->content
         ]);
 
@@ -130,7 +130,6 @@ class InstructorMeetController extends Controller
     public function destroy(Assignment $assignment, Meet $meet)
     {
         $meet->delete();
-
         return redirect()->route('instructors.assignments.meets.index', $assignment->id);
     }
 }
