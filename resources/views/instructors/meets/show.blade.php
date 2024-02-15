@@ -33,11 +33,10 @@
                 </div>
             </form>
         </div>
+        <form action="{{ route('instructors.assignments.meets.destroy', ['assignment' => $assignment->id, 'meet' => $meet->id]) }}" autocomplete="off" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-lg btn-danger">Hapus</button>
+        </form>
     </div>
-
-    <form action="{{ route('instructors.assignments.meets.destroy', ['assignment' => $assignment->id, 'meet' => $meet->id]) }}" autocomplete="off" method="POST">
-        @csrf
-        @method('DELETE')
-        <button class="btn btn-lg btn-danger">Hapus</button>
-    </form>
 @endsection
