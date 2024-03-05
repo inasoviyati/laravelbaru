@@ -14,6 +14,11 @@ class Shift extends Model
 
     protected $appends = ['diffTime'];
 
+    protected $casts = [
+        'time_start' => 'datetime:H:i',
+        'time_end' => 'datetime:H:i',
+    ];
+
     public $timestamps = false;
 
     public function timeFormated($time)

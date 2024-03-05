@@ -20,6 +20,16 @@ class Meet extends Model
     ];
 
     /**
+     * Get all of the attendances for the Meet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    /**
      * Get the assignments that owns the Meet
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

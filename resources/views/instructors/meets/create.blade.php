@@ -17,8 +17,12 @@
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label>Isi</label>
+                    <label>Laporan Akhir</label>
                     <textarea name="content" class="form-control form-control-lg" required></textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Laporan Awal</label>
+                    <textarea name="content_start" class="form-control form-control-lg" required></textarea>
                 </div>
                 <div class="form-group mb-3">
                     <label>Lampiran</label>

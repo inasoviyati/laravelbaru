@@ -48,7 +48,8 @@ class InstructorMeetController extends Controller
         ]);
 
         $module = $meet->modules()->create([
-            'content' => $request->content
+            'content' => $request->content,
+            'content_start' => $request->content_start
         ]);
 
         if ($request->hasFile('attachment')) {
@@ -77,7 +78,33 @@ class InstructorMeetController extends Controller
             'assignment' => $assignment,
             'meet' => $meet,
             'module' => $meet->modules()->where('meet_id', $meet->id)->first(),
+            'assignmentStudents' => $assignment->assignmentStudents()->get(),
+
+            'hadir' => $meet->attendances()->where('status', 'H')->count(),
+            'sakit' => $meet->attendances()->where('status', 'S')->count(),
+            'izin' => $meet->attendances()->where('status', 'I')->count(),
+            'alpa' => $meet->attendances()->where('status', 'A')->count(),
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Meet  $meet
+     * @return \Illuminate\Http\Response
+     */
+    public function attendances(Request $request, Assignment $assignment, Meet $meet)
+    {
+        foreach ($request->status as $key => $value) {
+            $meet->attendances()->updateOrCreate([
+                'student_id' => $key,
+                'meet_id' => $meet->id
+            ], [
+                'status' => $value
+            ]);
+        }
+
+        return redirect()->route('instructors.assignments.meets.show', [$assignment->id, $meet->id]);
     }
 
     /**
@@ -105,7 +132,10 @@ class InstructorMeetController extends Controller
         ]);
 
         $meet->modules()->updateOrCreate([
-            'content' => $request->content
+            'meet_id' => $meet->id
+        ], [
+            'content' => $request->content,
+            'content_start' => $request->content_start,
         ]);
 
         if ($request->hasFile('attachment')) {

@@ -100,7 +100,10 @@
                         <a class="sidebar-link"
                             href="{{ route('instructors.assignments.meets.index', $instructor->id) }}">
                             <i class="align-middle" data-feather="book"></i>
-                            <span class="align-middle">{{ $instructor->subject->alias }}</span>
+                            <span class="align-middle">
+                                {{ $instructor->subject->alias }}
+                                - {{ $instructor->assignmentStudents()->first()->user->roomUser->room->name }}
+                            </span>
                         </a>
                     </li>
                 @endforeach
