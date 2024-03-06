@@ -35,6 +35,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get all of the assignments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assignments(): HasMany
+    {
+        return $this->hasMany(Assignment::class, 'instructor_id', 'id');
+    }
+
+    /**
      * Get the room that owns the User
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -15,11 +15,11 @@ return new class extends Migration
 
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('assignment_id');
-            $table->foreign('assignment_id')->references('id')->on('assignments')->cascadeOnDelete();
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->unsignedBigInteger('meet_id');
+            $table->foreign('meet_id')->references('id')->on('meets')->cascadeOnDelete();
             $table->integer('score');
-            $table->timestamp('created_at')->nullable()->default(null);
-            $table->timestamp('updated_at')->nullable()->default(null);
         });
 
         Schema::enableForeignKeyConstraints();

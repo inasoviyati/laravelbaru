@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\Meet;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class InstructorMeetController extends Controller
@@ -79,6 +80,8 @@ class InstructorMeetController extends Controller
             'meet' => $meet,
             'module' => $meet->modules()->where('meet_id', $meet->id)->first(),
             'assignmentStudents' => $assignment->assignmentStudents()->get(),
+            'assistances' => $meet->assistances()->get(),
+            'instructors' => User::where('role', 'instructor')->get(),
 
             'hadir' => $meet->attendances()->where('status', 'H')->count(),
             'sakit' => $meet->attendances()->where('status', 'S')->count(),
@@ -101,6 +104,20 @@ class InstructorMeetController extends Controller
                 'meet_id' => $meet->id
             ], [
                 'status' => $value
+            ]);
+        }
+
+        return redirect()->route('instructors.assignments.meets.show', [$assignment->id, $meet->id]);
+    }
+
+    public function scores(Request $request, Assignment $assignment, Meet $meet)
+    {
+        foreach ($request->status as $key => $value) {
+            $meet->scores()->updateOrCreate([
+                'student_id' => $key,
+                'meet_id' => $meet->id
+            ], [
+                'score' => $value
             ]);
         }
 
@@ -137,6 +154,16 @@ class InstructorMeetController extends Controller
             'content' => $request->content,
             'content_start' => $request->content_start,
         ]);
+
+        $meet->assistances()->delete();
+
+        if ($meet->assistances()->count() > 0) {
+            foreach ($request->assistances as $value) {
+                $meet->assistances()->create([
+                    'instructor_id' => $value,
+                ]);
+            }
+        }
 
         if ($request->hasFile('attachment')) {
             $file = $request->file('attachment');

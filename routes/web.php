@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('instructors/assignments/{assignment}/meets', InstructorMeetController::class, ['names' => 'instructors.assignments.meets']);
     Route::post('instructors/assignments/{assignment}/meets/{meet}/attendance', [InstructorMeetController::class, 'attendances'])->name('instructors.assignments.meets.attendance');
+    Route::post('instructors/assignments/{assignment}/meets/{meet}/score', [InstructorMeetController::class, 'scores'])->name('instructors.assignments.meets.score');
     Route::get('rooms', [RoomController::class, 'assigned'])->name('room.assigned');
     Route::get('rooms/{room}', [RoomController::class, 'assignedDetail'])->name('room.assigned.detail');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

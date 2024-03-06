@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreign('meet_id')->references('id')->on('meets')->cascadeOnDelete();
             $table->unsignedBigInteger('instructor_id');
             $table->foreign('instructor_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->boolean('is_head');
         });
 
         Schema::enableForeignKeyConstraints();

@@ -95,9 +95,11 @@ class RoomController extends Controller
     }
 
     public function assignedDetail(AssignmentStudent $room) {
+        // dd($room->assignment->meets);
         return view('student.room.show', [
             'title' => $room->assignment->subject->name,
-            'rooms' => AssignmentStudent::where('student_id', Auth::user()->id)->get(),
+            // 'rooms' => AssignmentStudent::where('student_id', Auth::user()->id)->get(),
+            'meets' => $room->assignment->meets->sortBy('date'),
         ]);        
     }
 }

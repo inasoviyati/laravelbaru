@@ -16,8 +16,28 @@ class Meet extends Model
     public $timestamps = false;
 
     public $casts = [
-        'date' => 'date',
+        'date' => 'datetime:Y-m-d',
     ];
+
+    /**
+     * Get all of the assistances for the Meet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assistances(): HasMany
+    {
+        return $this->hasMany(Assistance::class);
+    }
+
+    /**
+     * Get all of the scores for the Meet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function scores(): HasMany
+    {
+        return $this->hasMany(Score::class);
+    }
 
     /**
      * Get all of the attendances for the Meet
