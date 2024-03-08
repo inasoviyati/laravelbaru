@@ -44,6 +44,11 @@ class User extends Authenticatable
         return $this->hasMany(Assignment::class, 'instructor_id', 'id');
     }
 
+    public function assignmentStudents(): HasMany
+    {
+        return $this->hasMany(AssignmentStudent::class, 'student_id', 'id');
+    }
+
     /**
      * Get the room that owns the User
      *

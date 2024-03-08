@@ -25,9 +25,9 @@
                         <td>{{ $instructor->id }}</td>
                         <td>{{ $instructor->npm }}</td>
                         <td>{{ $instructor->name }}</td>
-                        <td class="text-center">{{ $instructor->assignments->count() }}</td>
+                        <td class="text-center">{{ $instructor->assignmentStudents->count() }}</td>
                         <td>
-                            <a class="btn btn-info" href="{{ route('instructorAttendance.show', $instructor->id) }}">Show</a>
+                            <a class="btn btn-info" href="{{ route('score.show', $instructor->id) }}">Show</a>
                         </td>
                     </tr>
                 @endforeach

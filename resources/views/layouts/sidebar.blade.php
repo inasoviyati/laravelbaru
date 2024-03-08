@@ -28,12 +28,12 @@
                         <span class="align-middle">Absen Mahasiswa</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs('report.*') ? 'active' : '' }}">
+                {{-- <li class="sidebar-item {{ request()->routeIs('report.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('report.index') }}">
                         <i class="align-middle" data-feather="book"></i>
                         <span class="align-middle">BAP</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item {{ request()->routeIs('score.*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('score.index') }}">
                         <i class="align-middle" data-feather="book"></i>
